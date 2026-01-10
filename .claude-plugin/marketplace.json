@@ -9,19 +9,13 @@
       "name": "kuku-pr-review-toolkit",
       "description": "Comprehensive PR review agents specializing in comments, tests, error handling, type design, code quality, security vulnerabilities, and code simplification.",
       "version": "2.0.0",
-      "source": "./kuku-pr-review-toolkit",
-      "owner": {
-        "name": "kuku0922"
-      }
+      "source": "./kuku-pr-review-toolkit"
     },
     {
       "name": "kuku-doc-consistency-toolkit",
       "description": "Document consistency checking agents for verifying alignment between OpenSpec specifications, top-level architecture design, detailed design documents, and code implementation.",
       "version": "1.0.0",
-      "source": "./kuku-doc-consistency-toolkit",
-      "owner": {
-        "name": "kuku0922"
-      }
+      "source": "./kuku-doc-consistency-toolkit"
     }
   ]
 }
