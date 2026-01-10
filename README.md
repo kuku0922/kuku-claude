@@ -72,21 +72,39 @@ Claude Code 增强工具集，提供代码审查和文档一致性检查等功�
 
 ## 安装
 
-### 方式一：交互式安装（推荐）
+### 步骤一：添加插件市场
 
-在 Claude Code 中运行：
-```
-/plugin > Discover
-```
-然后在插件列表中搜索并选择要安装的插件。
-
-### 方式二：命令行安装
+首先需要将本仓库添加为 Claude Code 的插件市场源：
 
 ```bash
-# 直接安装
+/plugin marketplace add kuku0922/kuku-claude
+```
+
+### 步骤二：安装插件
+
+#### 方式 A：交互式安装（推荐）
+
+```bash
+/plugin
+```
+进入插件管理器后，切换到 **Discover** 标签页，搜索并选择要安装的插件。
+
+#### 方式 B：命令行安装
+
+```bash
+# 安装 PR 代码审查工具
 /plugin install kuku-pr-review-toolkit@kuku-claude
+
+# 安装文档一致性检查工具
 /plugin install kuku-doc-consistency-toolkit@kuku-claude
 ```
+
+### 安装作用域
+
+安装时可选择作用域：
+- `user`（默认）：个人跨项目使用
+- `project`：团队共享（提交到版本控制）
+- `local`：仅当前项目（gitignore）
 
 > ⚠️ **注意：** 安装前请确保信任该插件。Anthropic 不控制插件中包含的 MCP 服务器、文件或其他软件。
 
