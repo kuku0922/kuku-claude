@@ -1,6 +1,9 @@
 {
   "name": "kuku-claude",
   "description": "Kuku's Claude Code plugins collection",
+  "owner": {
+    "name": "kuku0922"
+  },
   "plugins": [
     {
       "name": "kuku-pr-review-toolkit",
