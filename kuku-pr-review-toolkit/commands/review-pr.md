@@ -52,9 +52,16 @@ Run a comprehensive pull request review using multiple specialized agents, each 
    - Good for interactive review
 
    **Parallel approach** (user can request):
-   - Launch all agents simultaneously
-   - Faster for comprehensive review
-   - Results come back together
+   - Launch agents in batches with **max 3 concurrent agents**
+   - Wait for current batch to complete before launching next batch
+   - Faster than sequential while avoiding resource overload
+   - Results aggregated after all batches complete
+
+   **IMPORTANT: Concurrency Limit**
+   - Maximum 3 agents running simultaneously at any time
+   - When launching multiple agents, batch them in groups of 3
+   - Wait for all agents in current batch to complete before starting next batch
+   - Example: 7 agents → Batch 1 (3 agents) → wait → Batch 2 (3 agents) → wait → Batch 3 (1 agent)
 
 6. **Aggregate Results**
 

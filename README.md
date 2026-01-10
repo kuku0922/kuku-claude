@@ -35,6 +35,9 @@ Claude Code 增强工具集，提供代码审查和文档一致性检查等功�
 # 组合审查
 /kuku-pr-review-toolkit:review-pr tests errors # 测试 + 错误处理
 /kuku-pr-review-toolkit:review-pr security quality # 安全 + 质量
+
+# 并行审查（最多 3 个 Agent 同时运行）
+/kuku-pr-review-toolkit:review-pr all parallel
 ```
 
 ### kuku-doc-consistency-toolkit

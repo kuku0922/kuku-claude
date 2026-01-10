@@ -62,6 +62,12 @@ spec.md
 
 ### 3. Launch Appropriate Agents
 
+**IMPORTANT: Concurrency Limit**
+- Maximum 3 agents running simultaneously at any time
+- When launching multiple agents, batch them in groups of 3
+- Wait for all agents in current batch to complete before starting next batch
+- Example: 4 agents → Batch 1 (3 agents) → wait → Batch 2 (1 agent)
+
 Based on check type:
 
 **spec-impl**: Launch spec-impl-checker
@@ -80,7 +86,8 @@ Based on check type:
 - Input: All document types
 - Output: Cross-document consistency report
 
-**full**: Launch all agents sequentially
+**full**: Launch all agents in batches (max 3 concurrent)
+- Batch agents and wait for completion between batches
 - Aggregate all reports into unified summary
 
 ### 4. Aggregate Results

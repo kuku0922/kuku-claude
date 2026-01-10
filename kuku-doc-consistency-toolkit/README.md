@@ -177,12 +177,14 @@ For thorough consistency analysis:
 # Check all documents for consistency
 /kuku-doc-consistency-toolkit:check-consistency cross-doc
 
-# Full consistency check
+# Full consistency check (max 3 agents concurrent)
 /kuku-doc-consistency-toolkit:check-consistency full
 
 # Focus on specific module
 /kuku-doc-consistency-toolkit:check-consistency design-impl auth
 ```
+
+**Note**: When running multiple agents (e.g., `full` check), agents are launched in batches of maximum 3 concurrent agents to avoid resource overload.
 
 ## Output Format
 
