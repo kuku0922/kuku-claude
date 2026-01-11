@@ -4,7 +4,22 @@ A comprehensive collection of specialized agents for verifying consistency betwe
 
 ## Overview
 
-This toolkit bundles 4 expert consistency-checking agents that each focus on a specific aspect of document-code alignment. Use them individually for targeted checks or together for comprehensive consistency analysis.
+This toolkit bundles 4 expert consistency-checking agents that each focus on a specific aspect of document-code alignment. Use them individually for targeted checks or together for comprehensive consistency analysis. All agents leverage LSP and Serena symbolic tools for precise code analysis.
+
+## Code Analysis Tools
+
+All agents have access to powerful code analysis tools:
+
+### LSP Tools
+- `find_definition` - Find symbol definitions
+- `find_references` - Find all references to a symbol
+- `get_diagnostics` - Get language diagnostics (errors, warnings)
+
+### Serena Symbolic Tools
+- `get_symbols_overview` - Get file symbols overview
+- `find_symbol` - Find specific symbol with body
+- `find_referencing_symbols` - Find symbols that reference a symbol
+- `search_for_pattern` - Search patterns in code
 
 ## Document Hierarchy
 

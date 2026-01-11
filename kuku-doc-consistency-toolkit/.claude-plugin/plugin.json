@@ -1,10 +1,10 @@
 {
   "name": "kuku-doc-consistency-toolkit",
-  "description": "Document consistency checking agents for verifying alignment between OpenSpec specifications, top-level architecture design, detailed design documents, and code implementation. Parallel execution with max 3 concurrent agents.",
+  "description": "Document consistency checking agents for verifying alignment between OpenSpec specifications, top-level architecture design, detailed design documents, and code implementation. All agents support LSP and Serena symbolic tools for precise code analysis.",
   "author": {
     "name": "Community",
     "email": "community@example.com"
   },
-  "version": "1.3.0",
-  "keywords": ["documentation", "consistency", "openspec", "architecture", "design", "verification", "concurrency"]
+  "version": "1.4.0",
+  "keywords": ["documentation", "consistency", "openspec", "architecture", "design", "verification", "concurrency", "lsp", "serena"]
 }

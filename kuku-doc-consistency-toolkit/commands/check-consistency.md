@@ -109,27 +109,38 @@ Based on check type (follow concurrency limit above):
 
 ### 4. Aggregate Results
 
-Combine findings into unified report:
+Combine findings into unified report using the **Traceability Matrix** format:
 
 ```markdown
 # Consistency Check Summary
 
-## Check Type: [type]
-## Scope: [module/feature or "all"]
+**Check Type**: [type]
+**Scope**: [module/feature or "all"]
 
-### Critical Issues (Must Fix)
+## Traceability Matrix
+
+| Item | Architecture | Detailed Design | OpenSpec | Code | Status |
+|------|--------------|-----------------|----------|------|--------|
+| JWT Auth | ES256 | ES256 | ES256 | ES256 | ✅ |
+| Token expiry | 2h | 2h | 1h | 2h | ⚠️ |
+| Session timeout | 30min | 30min | 30min | ❌ Missing | ❌ |
+| Rate limiting | Required | Detailed | ❌ No spec | Implemented | ⚠️ |
+
+**Legend**: ✅ All consistent | ⚠️ Partial inconsistency | ❌ Missing/Conflict
+
+## Critical Issues (Must Fix)
 - [checker]: Issue description [location]
 
-### High Priority (Should Fix)
+## High Priority (Should Fix)
 - [checker]: Issue description [location]
 
-### Medium Priority (Consider)
+## Medium Priority (Consider)
 - [checker]: Issue description [location]
 
-### Document Updates Needed
+## Document Updates Needed
 - [document]: Suggested update
 
-### Overall Compliance
+## Overall Compliance
 - Spec-Implementation: X%
 - Architecture-Design: Y%
 - Design-Implementation: Z%

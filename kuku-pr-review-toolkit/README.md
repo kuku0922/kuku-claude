@@ -4,7 +4,22 @@ A comprehensive collection of specialized agents for thorough pull request revie
 
 ## Overview
 
-This plugin bundles 7 expert review agents that each focus on a specific aspect of code quality. Use them individually for targeted reviews or together for comprehensive PR analysis. All agents support multiple programming languages.
+This plugin bundles 7 expert review agents that each focus on a specific aspect of code quality. Use them individually for targeted reviews or together for comprehensive PR analysis. All agents support multiple programming languages and leverage LSP and Serena symbolic tools for precise code analysis.
+
+## Code Analysis Tools
+
+All agents have access to powerful code analysis tools:
+
+### LSP Tools
+- `find_definition` - Find symbol definitions
+- `find_references` - Find all references to a symbol
+- `get_diagnostics` - Get language diagnostics (errors, warnings)
+
+### Serena Symbolic Tools
+- `get_symbols_overview` - Get file symbols overview
+- `find_symbol` - Find specific symbol with body
+- `find_referencing_symbols` - Find symbols that reference a symbol
+- `search_for_pattern` - Search patterns in code
 
 ## Supported Languages
 
