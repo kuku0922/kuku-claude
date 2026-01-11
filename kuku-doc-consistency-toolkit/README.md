@@ -184,7 +184,14 @@ For thorough consistency analysis:
 /kuku-doc-consistency-toolkit:check-consistency design-impl auth
 ```
 
-**Note**: When running multiple agents (e.g., `full` check), agents are launched in batches of maximum 3 concurrent agents to avoid resource overload.
+**Concurrency Rule**: Always launch up to 3 agents per batch until fewer than 3 remain.
+- 4 agents → 3 → 1
+- 5 agents → 3 → 2
+- 6 agents → 3 → 3
+- 7 agents → 3 → 3 → 1
+
+WRONG: 7 → 3 → 2 → 1 → 1 (decreasing batch sizes)
+RIGHT: 7 → 3 → 3 → 1 (always max out each batch)
 
 ## Output Format
 

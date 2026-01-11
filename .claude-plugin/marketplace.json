@@ -8,13 +8,13 @@
     {
       "name": "kuku-pr-review-toolkit",
       "description": "Comprehensive PR review agents specializing in comments, tests, error handling, type design, code quality, security vulnerabilities, and code simplification. Supports parallel execution with max 3 concurrent agents.",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "source": "./kuku-pr-review-toolkit"
     },
     {
       "name": "kuku-doc-consistency-toolkit",
       "description": "Document consistency checking agents for verifying alignment between OpenSpec specifications, top-level architecture design, detailed design documents, and code implementation. Supports parallel execution with max 3 concurrent agents.",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "source": "./kuku-doc-consistency-toolkit"
     }
   ]

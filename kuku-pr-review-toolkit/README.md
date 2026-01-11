@@ -327,7 +327,14 @@ You can request multiple agents to run in parallel or sequentially:
 "Run pr-test-analyzer and comment-analyzer in parallel"
 ```
 
-**Note**: When running in parallel mode, agents are launched in batches of maximum 3 concurrent agents. If more than 3 agents need to run, they will be batched automatically (e.g., 7 agents → batch 1: 3 agents → wait → batch 2: 3 agents → wait → batch 3: 1 agent).
+**Concurrency Rule**: Always launch up to 3 agents per batch until fewer than 3 remain.
+- 4 agents → 3 → 1
+- 5 agents → 3 → 2
+- 6 agents → 3 → 3
+- 7 agents → 3 → 3 → 1
+
+WRONG: 7 → 3 → 2 → 1 → 1 (decreasing batch sizes)
+RIGHT: 7 → 3 → 3 → 1 (always max out each batch)
 
 **Sequential** (when one informs the other):
 ```

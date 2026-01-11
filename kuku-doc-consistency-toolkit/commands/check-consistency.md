@@ -62,11 +62,27 @@ spec.md
 
 ### 3. Launch Appropriate Agents
 
-**IMPORTANT: Concurrency Limit**
-- Maximum 3 agents running simultaneously at any time
-- When launching multiple agents, batch them in groups of 3
-- Wait for all agents in current batch to complete before starting next batch
-- Example: 4 agents → Batch 1 (3 agents) → wait → Batch 2 (1 agent)
+**IMPORTANT: Concurrency Limit (Max 3 Parallel Agents)**
+
+Batching Rule: Always launch up to 3 agents per batch until fewer than 3 remain.
+
+```
+remaining = total_agents
+while remaining > 0:
+    batch_size = min(3, remaining)
+    launch batch_size agents in parallel
+    wait for all to complete
+    remaining -= batch_size
+```
+
+Examples:
+- 4 agents → Batch 1 (3) → wait → Batch 2 (1)
+- 5 agents → Batch 1 (3) → wait → Batch 2 (2)
+- 6 agents → Batch 1 (3) → wait → Batch 2 (3)
+- 7 agents → Batch 1 (3) → wait → Batch 2 (3) → wait → Batch 3 (1)
+
+WRONG: 7 agents → 3 → 2 → 1 → 1 (decreasing batch sizes)
+RIGHT: 7 agents → 3 → 3 → 1 (always max out each batch)
 
 Based on check type:
 
