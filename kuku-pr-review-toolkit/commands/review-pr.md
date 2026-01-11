@@ -12,7 +12,30 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 
 ## Review Workflow:
 
-1. **Determine Review Scope**
+### ⚠️ MANDATORY: Agent Concurrency Limit (Max 3)
+
+**Before launching ANY agents, you MUST output an Execution Plan:**
+
+```
+## Execution Plan
+- Review scope: [scope]
+- Total agents: [count]
+- Batching required: [Yes/No]
+- Batch 1: [agent1, agent2, agent3]
+- Batch 2: [agent4, agent5, agent6]
+- Batch 3: [agent7, ...]
+```
+
+**Then execute EXACTLY as planned.**
+
+| Review Scope | Max Agents | Batching Required |
+|--------------|------------|-------------------|
+| Single aspect (comments, tests, etc.) | 1 | No |
+| 2-3 aspects | 2-3 | No |
+| 4+ aspects | 4-7 | **Yes** |
+| **all** (full review) | **up to 7** | **Yes: Batch 1 (3) → Batch 2 (3) → Batch 3 (1)** |
+
+### 1. Determine Review Scope
    - Check git status to identify changed files
    - Parse arguments to see if user requested specific review aspects
    - Default: Run all applicable reviews
@@ -52,32 +75,10 @@ Run a comprehensive pull request review using multiple specialized agents, each 
    - Good for interactive review
 
    **Parallel approach** (user can request):
-   - Launch agents in batches with **max 3 concurrent agents**
+   - Launch agents in batches per the concurrency limit above
    - Wait for current batch to complete before launching next batch
    - Faster than sequential while avoiding resource overload
    - Results aggregated after all batches complete
-
-   **IMPORTANT: Concurrency Limit (Max 3 Parallel Agents)**
-
-   Batching Rule: Always launch up to 3 agents per batch until fewer than 3 remain.
-
-   ```
-   remaining = total_agents
-   while remaining > 0:
-       batch_size = min(3, remaining)
-       launch batch_size agents in parallel
-       wait for all to complete
-       remaining -= batch_size
-   ```
-
-   Examples:
-   - 4 agents → Batch 1 (3) → wait → Batch 2 (1)
-   - 5 agents → Batch 1 (3) → wait → Batch 2 (2)
-   - 6 agents → Batch 1 (3) → wait → Batch 2 (3)
-   - 7 agents → Batch 1 (3) → wait → Batch 2 (3) → wait → Batch 3 (1)
-
-   WRONG: 7 agents → 3 → 2 → 1 → 1 (decreasing batch sizes)
-   RIGHT: 7 agents → 3 → 3 → 1 (always max out each batch)
 
 6. **Aggregate Results**
 

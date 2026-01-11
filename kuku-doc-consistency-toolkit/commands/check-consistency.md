@@ -24,6 +24,29 @@ Available consistency check types:
 
 ## Workflow
 
+### ⚠️ MANDATORY: Agent Concurrency Limit (Max 3)
+
+**Before launching ANY agents, you MUST output an Execution Plan:**
+
+```
+## Execution Plan
+- Check type: [type]
+- Total agents: [count]
+- Batching required: [Yes/No]
+- Batch 1: [agent1, agent2, agent3]
+- Batch 2: [agent4, ...]
+```
+
+**Then execute EXACTLY as planned.**
+
+| Check Type | Agents Needed | Batching Required |
+|------------|---------------|-------------------|
+| spec-impl | 1 | No |
+| arch-design | 1 | No |
+| design-impl | 1 | No |
+| cross-doc | 1 | No |
+| **full** | **4** | **Yes: Batch 1 (3) → Batch 2 (1)** |
+
 ### 1. Determine Check Scope
 
 Parse arguments to identify:
@@ -62,29 +85,7 @@ spec.md
 
 ### 3. Launch Appropriate Agents
 
-**IMPORTANT: Concurrency Limit (Max 3 Parallel Agents)**
-
-Batching Rule: Always launch up to 3 agents per batch until fewer than 3 remain.
-
-```
-remaining = total_agents
-while remaining > 0:
-    batch_size = min(3, remaining)
-    launch batch_size agents in parallel
-    wait for all to complete
-    remaining -= batch_size
-```
-
-Examples:
-- 4 agents → Batch 1 (3) → wait → Batch 2 (1)
-- 5 agents → Batch 1 (3) → wait → Batch 2 (2)
-- 6 agents → Batch 1 (3) → wait → Batch 2 (3)
-- 7 agents → Batch 1 (3) → wait → Batch 2 (3) → wait → Batch 3 (1)
-
-WRONG: 7 agents → 3 → 2 → 1 → 1 (decreasing batch sizes)
-RIGHT: 7 agents → 3 → 3 → 1 (always max out each batch)
-
-Based on check type:
+Based on check type (follow concurrency limit above):
 
 **spec-impl**: Launch spec-impl-checker
 - Input: OpenSpec files + implementation code paths
