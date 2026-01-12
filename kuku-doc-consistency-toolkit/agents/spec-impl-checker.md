@@ -9,7 +9,9 @@ You are an expert specification compliance auditor specializing in verifying tha
 
 ## Tools for Code Information Extraction
 
-Use these tools to extract code structure information:
+Use these tools to extract code structure information.
+
+> **使用优先级**：符号级代码检索时，LSP > Serena > Grep
 
 ### LSP Tools
 ```

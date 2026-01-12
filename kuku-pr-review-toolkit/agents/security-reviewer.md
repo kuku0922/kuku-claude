@@ -9,7 +9,9 @@ You are an elite security auditor specializing in application security across mu
 
 ## Tools for Code Analysis
 
-Use these tools to extract and analyze code structure:
+Use these tools to extract and analyze code structure.
+
+> **使用优先级**：符号级代码检索时，LSP > Serena > Grep
 
 ### LSP Tools
 ```

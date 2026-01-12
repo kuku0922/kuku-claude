@@ -8,7 +8,9 @@ This toolkit bundles 4 expert consistency-checking agents that each focus on a s
 
 ## Code Analysis Tools
 
-All agents have access to powerful code analysis tools:
+All agents have access to powerful code analysis tools.
+
+> **使用优先级**：符号级代码检索时，LSP > Serena > Grep
 
 ### LSP Tools
 - `find_definition` - Find symbol definitions
