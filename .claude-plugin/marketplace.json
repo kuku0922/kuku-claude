@@ -7,14 +7,20 @@
   "plugins": [
     {
       "name": "kuku-pr-review-toolkit",
-      "description": "Comprehensive PR review agents specializing in comments, tests, error handling, type design, code quality, security vulnerabilities, and code simplification. All agents support LSP and Serena symbolic tools for precise code analysis.",
-      "version": "2.5.0",
+      "description": "Comprehensive PR review agents (8 agents) specializing in comments, tests, error handling, type design, code quality, security vulnerabilities, architectural impact, and code simplification. Reviews git diff changes. All agents support LSP and Serena symbolic tools for precise code analysis.",
+      "version": "3.1.0",
       "source": "./kuku-pr-review-toolkit"
     },
     {
+      "name": "kuku-feature-review-toolkit",
+      "description": "Feature-level code review toolkit (8 agents) with boundary discovery and multi-agent orchestration. Traces feature call chains across frontend and backend, discovers all related code, and coordinates specialized review agents for comprehensive feature analysis. All agents support LSP and Serena symbolic tools for precise code analysis.",
+      "version": "3.1.0",
+      "source": "./kuku-feature-review-toolkit"
+    },
+    {
       "name": "kuku-doc-consistency-toolkit",
-      "description": "Document consistency checking agents for verifying alignment between OpenSpec specifications, top-level architecture design, detailed design documents, and code implementation. All agents support LSP and Serena symbolic tools for precise code analysis.",
-      "version": "1.5.0",
+      "description": "Document consistency checking agents (4 agents) for verifying alignment between OpenSpec specifications, top-level architecture design, detailed design documents, and code implementation. All agents support LSP and Serena symbolic tools for precise code analysis.",
+      "version": "3.1.0",
       "source": "./kuku-doc-consistency-toolkit"
     }
   ]

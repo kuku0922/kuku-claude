@@ -32,8 +32,8 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 |--------------|------------|-------------------|
 | Single aspect (comments, tests, etc.) | 1 | No |
 | 2-3 aspects | 2-3 | No |
-| 4+ aspects | 4-7 | **Yes** |
-| **all** (full review) | **up to 7** | **Yes: Batch 1 (3) → Batch 2 (3) → Batch 3 (1)** |
+| 4+ aspects | 4-8 | **Yes** |
+| **all** (full review) | **up to 8** | **Yes: Batch 1 (3) → Batch 2 (3) → Batch 3 (2)** |
 
 ### 1. Determine Review Scope
    - Check git status to identify changed files
@@ -48,6 +48,7 @@ Run a comprehensive pull request review using multiple specialized agents, each 
    - **types** - Analyze type design and invariants (if new types added)
    - **code** - General code review for project guidelines
    - **security** - Security vulnerability and attack vector analysis
+   - **architecture** - Architectural impact analysis (layer boundaries, dependencies)
    - **simplify** - Simplify code for clarity and maintainability
    - **all** - Run all applicable reviews (default)
 
@@ -65,6 +66,7 @@ Run a comprehensive pull request review using multiple specialized agents, each 
    - **If error handling changed**: silent-failure-hunter
    - **If types added/modified**: type-design-analyzer
    - **If security-sensitive code**: security-reviewer (auth, input handling, crypto, etc.)
+   - **If changes span multiple modules**: architecture-impact-analyzer
    - **After passing review**: code-simplifier (polish and refine)
 
 5. **Launch Review Agents**
@@ -133,6 +135,9 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 
 /kuku-pr-review-toolkit:review-pr simplify
 # Simplifies code after passing review
+
+/kuku-pr-review-toolkit:review-pr architecture
+# Analyzes architectural impact of changes
 ```
 
 **Parallel review:**
@@ -177,6 +182,13 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 - Simplifies complex code across Python, Go, Java, Rust, JS/TS, C++, Ruby, Swift
 - Applies language-specific idioms and best practices
 - Preserves functionality while improving clarity
+
+**architecture-impact-analyzer**:
+- Analyzes layer boundary compliance
+- Detects circular dependencies
+- Evaluates dependency direction
+- Assesses pattern compliance
+- Rates issues by severity (CRITICAL/HIGH/MEDIUM/LOW)
 
 ## Tips:
 

@@ -1,0 +1,10 @@
+{
+  "name": "kuku-feature-review-toolkit",
+  "description": "Feature-level code review toolkit with boundary discovery and multi-agent orchestration. Traces feature call chains across frontend and backend, discovers all related code, and coordinates 8 specialized review agents for comprehensive feature analysis. All agents support LSP and Serena symbolic tools for precise code analysis.",
+  "author": {
+    "name": "Community",
+    "email": "community@example.com"
+  },
+  "version": "3.1.0",
+  "keywords": ["feature-review", "code-review", "call-chain", "boundary-discovery", "multi-agent", "concurrency", "lsp", "serena", "frontend", "backend"]
+}

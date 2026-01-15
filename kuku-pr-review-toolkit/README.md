@@ -1,10 +1,10 @@
 # PR Review Toolkit
 
-A comprehensive collection of specialized agents for thorough pull request review, covering code comments, test coverage, error handling, type design, code quality, security vulnerabilities, and code simplification.
+A comprehensive collection of specialized agents for thorough pull request review, covering code comments, test coverage, error handling, type design, code quality, security vulnerabilities, architectural impact, and code simplification.
 
 ## Overview
 
-This plugin bundles 7 expert review agents that each focus on a specific aspect of code quality. Use them individually for targeted reviews or together for comprehensive PR analysis. All agents support multiple programming languages and leverage LSP and Serena symbolic tools for precise code analysis.
+This plugin bundles 8 expert review agents that each focus on a specific aspect of code quality. Use them individually for targeted reviews or together for comprehensive PR analysis. All agents support multiple programming languages and leverage LSP and Serena symbolic tools for precise code analysis.
 
 ## Code Analysis Tools
 
@@ -224,6 +224,36 @@ Most agents support the following languages:
 
 **Note**: This agent preserves functionality while improving code structure and maintainability.
 
+### 8. architecture-impact-analyzer
+**Focus**: Architectural impact of code changes
+
+**Analyzes:**
+- Layer boundary compliance (Controller → Service → Repository)
+- Dependency direction and circular dependencies
+- New dependencies introduced by changes
+- Pattern compliance with existing codebase
+- Module boundary impact (cohesion, coupling)
+
+**When to use:**
+- When changes touch multiple modules
+- When introducing new patterns or dependencies
+- When modifying core infrastructure
+- When changes span multiple architectural layers
+
+**Triggers:**
+```
+"Check the architectural impact"
+"Does this fit our architecture?"
+"Review layer boundaries in these changes"
+"Check for circular dependencies"
+```
+
+**Output includes:**
+- Layer boundary analysis with violations
+- Dependency graph changes visualization
+- Pattern compliance assessment
+- Recommendations prioritized by severity
+
 ## Usage Patterns
 
 ### Individual Agent Usage
@@ -302,6 +332,8 @@ Agents provide confidence scores for their findings:
 
 **code-simplifier**: Identifies complexity with language-specific suggestions
 
+**architecture-impact-analyzer**: Rates layer violations and dependency issues by severity (CRITICAL/HIGH/MEDIUM/LOW)
+
 ### Output Formats
 
 All agents provide structured, actionable output:
@@ -326,6 +358,7 @@ All agents provide structured, actionable output:
 - comment-analyzer (if added/modified comments)
 - type-design-analyzer (if added/modified types)
 - security-reviewer (for auth, crypto, input handling)
+- architecture-impact-analyzer (if changes span multiple modules)
 - code-reviewer (final sweep)
 
 **After Passing Review:**
@@ -356,7 +389,7 @@ You can request multiple agents to run in parallel or sequentially:
 
 Then execute EXACTLY as planned:
 - 4 agents → Batch 1 (3) → wait → Batch 2 (1)
-- 7 agents → Batch 1 (3) → wait → Batch 2 (3) → wait → Batch 3 (1)
+- 8 agents → Batch 1 (3) → wait → Batch 2 (3) → wait → Batch 3 (2)
 
 **Sequential** (when one informs the other):
 ```
@@ -402,10 +435,11 @@ This plugin works great with:
 1. Write code → **code-reviewer**
 2. Fix issues → **silent-failure-hunter** (if error handling)
 3. Security check → **security-reviewer** (if sensitive code)
-4. Add tests → **pr-test-analyzer**
-5. Document → **comment-analyzer**
-6. Review passes → **code-simplifier** (polish)
-7. Create PR
+4. Architecture check → **architecture-impact-analyzer** (if multi-module changes)
+5. Add tests → **pr-test-analyzer**
+6. Document → **comment-analyzer**
+7. Review passes → **code-simplifier** (polish)
+8. Create PR
 
 ## Contributing
 
