@@ -1,0 +1,81 @@
+{
+  "name": "wechat-article-toolkit",
+  "version": "1.0.0",
+  "description": "多智能体协作的微信公众号文章写作工具集，支持多种写作角度、写作方式和主题选择",
+  "author": "YanG",
+  "homepage": "",
+  "repository": "",
+  "license": "MIT",
+  "keywords": [
+    "wechat",
+    "article",
+    "writing",
+    "ai",
+    "multi-agent",
+    "automation"
+  ],
+  "agents": [
+    {
+      "name": "prompt-optimizer-agent",
+      "description": "提示词优化 Agent：基于四块模式为各 Agent 生成高质量提示词",
+      "file": "agents/prompt-optimizer-agent.md"
+    },
+    {
+      "name": "research-agent",
+      "description": "调研 Agent：搜索、抓取、整理资料",
+      "file": "agents/research-agent.md"
+    },
+    {
+      "name": "tech-writer-agent",
+      "description": "技术写作 Agent：技术开发者视角写作",
+      "file": "agents/tech-writer-agent.md"
+    },
+    {
+      "name": "pm-writer-agent",
+      "description": "产品经理写作 Agent：AI 产品经理视角写作",
+      "file": "agents/pm-writer-agent.md"
+    },
+    {
+      "name": "ai-news-writer-agent",
+      "description": "新闻写作 Agent：AI 行业观察者视角写作",
+      "file": "agents/ai-news-writer-agent.md"
+    },
+    {
+      "name": "tutorial-writer-agent",
+      "description": "教程写作 Agent：AI 教程作者视角写作",
+      "file": "agents/tutorial-writer-agent.md"
+    },
+    {
+      "name": "cover-generator-agent",
+      "description": "封面图生成 Agent：生成文章封面图",
+      "file": "agents/cover-generator-agent.md"
+    },
+    {
+      "name": "structure-image-agent",
+      "description": "结构图生成 Agent：生成内容结构图/信息图",
+      "file": "agents/structure-image-agent.md"
+    },
+    {
+      "name": "formatter-agent",
+      "description": "格式化 Agent：Markdown 转 HTML",
+      "file": "agents/formatter-agent.md"
+    },
+    {
+      "name": "publisher-agent",
+      "description": "发布 Agent：发布到微信公众号草稿箱",
+      "file": "agents/publisher-agent.md"
+    }
+  ],
+  "commands": [
+    {
+      "name": "write-article",
+      "description": "多智能体协作写作入口（默认不发布）",
+      "file": "commands/write-article.md"
+    },
+    {
+      "name": "publish",
+      "description": "将已生成的文章发布到微信公众号草稿箱",
+      "file": "commands/publish.md"
+    }
+  ]
+}

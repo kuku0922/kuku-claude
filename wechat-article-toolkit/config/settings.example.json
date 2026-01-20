@@ -1,0 +1,16 @@
+{
+  "gemini": {
+    "api_key": "your-gemini-api-key-here",
+    "base_url": "https://generativelanguage.googleapis.com/v1beta",
+    "model": "gemini-3-pro-image-preview"
+  },
+  "wechat": {
+    "appid": "your-wechat-appid-here",
+    "appsecret": "your-wechat-appsecret-here",
+    "base_url": "https://api.weixin.qq.com/cgi-bin"
+  },
+  "output": {
+    "base_dir": "./output",
+    "images_dir": "images"
+  }
+}
