@@ -26,7 +26,7 @@
     {
       "name": "wechat-article-toolkit",
       "description": "多智能体协作的微信公众号文章写作工具集 (10 agents)，支持创作与仿写模式，涵盖调研、多角度写作（技术/产品/新闻/教程）、封面生成、格式化排版、一键发布等完整工作流。",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "./wechat-article-toolkit"
     }
   ]

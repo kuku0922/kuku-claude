@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run -p 3.14 --no-project --script
+# /// script
+# requires-python = ">=3.14"
+# dependencies = []
+# ///
 # -*- coding: utf-8 -*-
 """
 将 <pre><code> 代码块转换为微信兼容的 <div> + <br> + &nbsp; 格式

@@ -1,4 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run -p 3.14 --no-project --script
+# /// script
+# requires-python = ">=3.14"
+# dependencies = [
+#   "requests",
+# ]
+# ///
 # -*- coding: utf-8 -*-
 """
 微信公众号草稿发布工具
@@ -20,25 +26,57 @@ def get_plugin_root() -> Path:
     return Path(__file__).parent.parent
 
 
+def get_project_root() -> Path:
+    """
+    获取项目根目录（Claude Code 的 cwd）
+
+    Claude Code 启动时会将 cwd 设置为项目根目录
+    """
+    return Path.cwd()
+
+
+def get_config_dir() -> Path:
+    """
+    获取配置目录
+
+    优先级:
+    1. 项目目录/.claude/config/ (最高优先级)
+    2. 插件目录/config/ (降级方案)
+    """
+    # 优先级1: 项目目录配置
+    project_config_dir = get_project_root() / ".claude" / "config"
+    if project_config_dir.exists():
+        return project_config_dir
+
+    # 优先级2: 插件目录配置
+    return get_plugin_root() / "config"
+
+
 def load_config() -> Dict[str, Any]:
     """
-    从统一配置文件加载配置
+    从配置文件加载配置
 
-    配置文件位置: config/settings.json
+    配置加载优先级:
+    1. 项目目录/.claude/config/settings.json (最高优先级)
+    2. 插件目录/config/settings.json (降级方案)
     """
-    config_path = get_plugin_root() / "config" / "settings.json"
-
-    if config_path.exists():
-        with open(config_path, 'r', encoding='utf-8') as f:
+    # 优先级1: 项目目录配置
+    project_config = get_project_root() / ".claude" / "config" / "settings.json"
+    if project_config.exists():
+        with open(project_config, 'r', encoding='utf-8') as f:
             return json.load(f)
+
+    # 优先级2: 插件目录配置
+    plugin_config = get_plugin_root() / "config" / "settings.json"
+    if plugin_config.exists():
+        with open(plugin_config, 'r', encoding='utf-8') as f:
+            return json.load(f)
+
     return {}
 
 
 class WeChatPublisher:
     """微信公众号草稿发布器"""
-
-    # Token 缓存文件（放在插件 config 目录下）
-    TOKEN_CACHE_FILE = str(get_plugin_root() / "config" / "token_cache.json")
 
     # 微信API错误码映射
     ERROR_CODES = {
@@ -58,6 +96,8 @@ class WeChatPublisher:
 
     def __init__(self):
         """初始化发布器"""
+        # Token 缓存文件（放在配置目录下）
+        self.token_cache_file = str(get_config_dir() / "token_cache.json")
         self.config = load_config().get('wechat', {})
         self.base_url = self.config.get('base_url', 'https://api.weixin.qq.com/cgi-bin')
         self.appid = None
@@ -67,7 +107,7 @@ class WeChatPublisher:
 
     def load_credentials(self):
         """加载微信公众号凭证"""
-        config_path = get_plugin_root() / "config" / "settings.json"
+        config_path = get_config_dir() / "settings.json"
 
         # 从配置文件读取
         appid = self.config.get('appid', '')
@@ -98,7 +138,7 @@ class WeChatPublisher:
 
     def _handle_api_error(self, errcode: int, errmsg: str, context: str = "") -> str:
         """统一处理API错误，返回友好的中文提示"""
-        config_path = get_plugin_root() / "config" / "settings.json"
+        config_path = get_config_dir() / "settings.json"
         chinese_msg = self.ERROR_CODES.get(errcode, errmsg)
         error_detail = f"{context}失败 (错误码{errcode}): {chinese_msg}"
 
@@ -139,9 +179,9 @@ class WeChatPublisher:
             access_token字符串
         """
         # 尝试从缓存读取
-        if not force_refresh and os.path.exists(self.TOKEN_CACHE_FILE):
+        if not force_refresh and os.path.exists(self.token_cache_file):
             try:
-                with open(self.TOKEN_CACHE_FILE, 'r') as f:
+                with open(self.token_cache_file, 'r') as f:
                     cache = json.load(f)
 
                 # 检查token是否过期（提前5分钟刷新）
@@ -175,14 +215,14 @@ class WeChatPublisher:
         expires_in = result.get('expires_in', 7200)
 
         # 缓存token
-        os.makedirs(os.path.dirname(self.TOKEN_CACHE_FILE), exist_ok=True)
+        os.makedirs(os.path.dirname(self.token_cache_file), exist_ok=True)
         cache_data = {
             'access_token': access_token,
             'expires_at': time.time() + expires_in,
             'updated_at': time.strftime('%Y-%m-%d %H:%M:%S')
         }
 
-        with open(self.TOKEN_CACHE_FILE, 'w') as f:
+        with open(self.token_cache_file, 'w') as f:
             json.dump(cache_data, f, indent=2)
 
         print(f"✓ 获取access_token成功 (有效期: {expires_in}秒)")

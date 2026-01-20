@@ -1,4 +1,12 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run -p 3.14 --no-project --script
+# /// script
+# requires-python = ">=3.14"
+# dependencies = [
+#   "markdown",
+#   "beautifulsoup4",
+#   "cssutils",
+# ]
+# ///
 # -*- coding: utf-8 -*-
 """
 Markdown to HTML Converter for WeChat Public Accounts

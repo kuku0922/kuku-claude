@@ -1,4 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run -p 3.14 --no-project --script
+# /// script
+# requires-python = ">=3.14"
+# dependencies = [
+#   "google-genai",
+# ]
+# ///
 """
 图片生成API调用脚本
 
@@ -17,19 +23,40 @@ from pathlib import Path
 from typing import Optional, Dict, Any
 
 
+def get_plugin_root() -> Path:
+    """获取插件根目录"""
+    return Path(__file__).parent.parent
+
+
+def get_project_root() -> Path:
+    """
+    获取项目根目录（Claude Code 的 cwd）
+
+    Claude Code 启动时会将 cwd 设置为项目根目录
+    """
+    return Path.cwd()
+
+
 def load_config() -> Dict[str, Any]:
     """
-    从统一配置文件加载配置
+    从配置文件加载配置
 
-    配置文件位置: config/settings.json
+    配置加载优先级:
+    1. 项目目录/.claude/config/settings.json (最高优先级)
+    2. 插件目录/config/settings.json (降级方案)
     """
-    # 获取脚本所在目录的父目录（插件根目录）
-    plugin_root = Path(__file__).parent.parent
-    config_path = plugin_root / "config" / "settings.json"
-
-    if config_path.exists():
-        with open(config_path, 'r', encoding='utf-8') as f:
+    # 优先级1: 项目目录配置
+    project_config = get_project_root() / ".claude" / "config" / "settings.json"
+    if project_config.exists():
+        with open(project_config, 'r', encoding='utf-8') as f:
             return json.load(f)
+
+    # 优先级2: 插件目录配置
+    plugin_config = get_plugin_root() / "config" / "settings.json"
+    if plugin_config.exists():
+        with open(plugin_config, 'r', encoding='utf-8') as f:
+            return json.load(f)
+
     return {}
 
 
