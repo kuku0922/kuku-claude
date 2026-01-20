@@ -22,6 +22,12 @@
       "description": "Document consistency checking agents (4 agents) for verifying alignment between OpenSpec specifications, top-level architecture design, detailed design documents, and code implementation. All agents support LSP and Serena symbolic tools for precise code analysis.",
       "version": "3.1.0",
       "source": "./kuku-doc-consistency-toolkit"
+    },
+    {
+      "name": "wechat-article-toolkit",
+      "description": "多智能体协作的微信公众号文章写作工具集 (10 agents)，支持创作与仿写模式，涵盖调研、多角度写作（技术/产品/新闻/教程）、封面生成、格式化排版、一键发布等完整工作流。",
+      "version": "1.0.0",
+      "source": "./wechat-article-toolkit"
     }
   ]
 }
