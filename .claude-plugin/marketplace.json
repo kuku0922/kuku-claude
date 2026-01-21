@@ -8,25 +8,25 @@
     {
       "name": "kuku-pr-review-toolkit",
       "description": "Comprehensive PR review agents (8 agents) specializing in comments, tests, error handling, type design, code quality, security vulnerabilities, architectural impact, and code simplification. Reviews git diff changes. All agents support LSP and Serena symbolic tools for precise code analysis.",
-      "version": "4.0.0",
+      "version": "4.2.0",
       "source": "./kuku-pr-review-toolkit"
     },
     {
       "name": "kuku-feature-review-toolkit",
       "description": "Feature-level code review toolkit (8 agents) with boundary discovery and multi-agent orchestration. Traces feature call chains across frontend and backend, discovers all related code, and coordinates specialized review agents for comprehensive feature analysis. All agents support LSP and Serena symbolic tools for precise code analysis.",
-      "version": "4.0.0",
+      "version": "4.2.0",
       "source": "./kuku-feature-review-toolkit"
     },
     {
       "name": "kuku-doc-consistency-toolkit",
       "description": "Document consistency checking agents (4 agents) for verifying alignment between OpenSpec specifications, top-level architecture design, detailed design documents, and code implementation. All agents support LSP and Serena symbolic tools for precise code analysis.",
-      "version": "4.0.0",
+      "version": "4.2.0",
       "source": "./kuku-doc-consistency-toolkit"
     },
     {
       "name": "wechat-article-toolkit",
       "description": "多智能体协作的微信公众号文章写作工具集 (10 agents)，支持创作与仿写模式，涵盖调研、多角度写作（技术/产品/新闻/教程）、封面生成（即梦 AI）、格式化排版、一键发布等完整工作流。所有脚本通过 uv 临时包运行，无需本地安装依赖。",
-      "version": "4.0.0",
+      "version": "4.2.0",
       "source": "./wechat-article-toolkit"
     }
   ]
