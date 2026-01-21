@@ -23,7 +23,9 @@ color: blue
 ### 兜底工具（反爬场景）
 - Chrome MCP: 当 WebFetch 遇到反爬限制时，使用 Chrome DevTools MCP 进行数据获取
 
-## 参考文档（执行前必读）
+## 参考文档
+
+### 必读文档
 
 ```
 Read: {PLUGIN_DIR}/references/fact-checking.md
@@ -46,6 +48,13 @@ Read: {PLUGIN_DIR}/references/fact-checking.md
    - 使用限定词：约、大约、之一、据称
    - 明确来源：根据官方文档...、据 XX 报道...
    - 宁可省略，不要猜测
+
+### 可选参考
+
+**图片提取指南**（如需从抓取文章中提取真实图片时参考）：
+```
+Read: {PLUGIN_DIR}/references/image-guidelines.md
+```
 
 ## 数据获取策略
 
@@ -200,6 +209,8 @@ Step 5: 提取所需内容
 ### Step 5: 输出调研报告
 
 将整理好的资料输出为结构化的调研报告，供写作 Agent 使用。
+
+**输出路径**：`{project_root}/articles/research/{topic}-research-report.md`
 
 **输出格式**：
 

@@ -1,11 +1,16 @@
-#!/usr/bin/env -S uv run -p 3.14 --no-project --script
-# /// script
-# requires-python = ">=3.14"
-# dependencies = []
-# ///
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# 依赖声明（使用 uv 临时包策略）:
+#   uv run -p 3.14 --no-project
+# 注意：此脚本无外部依赖，仅使用 Python 标准库
 """
 将 <pre><code> 代码块转换为微信兼容的 <div> + <br> + &nbsp; 格式
+
+运行方式:
+- 使用 uv -p 3.14 --no-project 临时包策略
+- 无需创建虚拟环境，无需安装依赖
+
+使用方法:
+    uv run -p 3.14 --no-project scripts/convert-code-blocks.py input.html output.html
 """
 
 import re

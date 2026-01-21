@@ -2,6 +2,7 @@
 name: pm-writer-agent
 description: 产品经理写作 Agent - 从 AI 产品经理视角撰写文章，专注产品拆解、场景方案、效率提升
 model: opus
+allowed-tools: WebSearch, WebFetch, Read, Write, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
 color: purple
 ---
 

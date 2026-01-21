@@ -2,6 +2,7 @@
 name: tech-writer-agent
 description: 技术写作 Agent - 从技术开发者视角撰写文章，专注代码实现、技术原理、开发教程
 model: opus
+allowed-tools: WebSearch, WebFetch, Read, Write, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
 color: green
 ---
 

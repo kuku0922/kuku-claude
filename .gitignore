@@ -17,7 +17,3 @@ Thumbs.db
 # WeChat Article Toolkit - 敏感配置
 wechat-article-toolkit/config/settings.json
 wechat-article-toolkit/config/token_cache.json
-
-
-wechat_article_skills-main
-

@@ -2,7 +2,8 @@
 name: prompt-optimizer-agent
 description: 提示词优化 Agent：基于四块模式和示例驱动原则，为各写作 Agent 生成高质量提示词
 model: opus
-allowed-tools: Read
+allowed-tools: WebSearch, WebFetch, Read, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
+color: yellow
 ---
 
 # Prompt Optimizer Agent

@@ -1,15 +1,10 @@
 # 配置文件说明
 
-## 配置加载优先级
+## 配置文件位置
 
-脚本会按以下优先级加载配置：
-
-1. **项目配置**（最高优先级）: `{项目目录}/.claude/config/settings.json`
-2. **插件配置**（降级方案）: `{插件目录}/config/settings.json`
+配置文件路径: `{项目目录}/.claude/config/settings.json`
 
 ## 使用方式
-
-### 方式一：项目级配置（推荐）
 
 在你的项目中创建配置文件：
 
@@ -19,22 +14,17 @@ cp /path/to/wechat-article-toolkit/config/settings.example.json .claude/config/s
 # 编辑 .claude/config/settings.json 填入你的配置
 ```
 
-这样每个项目可以有独立的配置（不同的公众号、不同的 API Key 等）。
-
-### 方式二：插件级配置
-
-如果你只有一个公众号，可以在插件目录创建配置：
-
-```bash
-cd /path/to/wechat-article-toolkit/config
-cp settings.example.json settings.json
-# 编辑 settings.json 填入你的配置
-```
-
 ## 配置项说明
 
 ```json
 {
+  "image_generation": {
+    "default_provider": "图片生成 AI 提供商（gemini 或 jimeng）"
+  },
+  "gemini": {
+    "api_key": "Google Gemini API Key",
+    "model": "Gemini 模型名称（默认 gemini-3-pro-image-preview）"
+  },
   "jimeng": {
     "access_key_id": "火山引擎 Access Key ID",
     "secret_access_key": "火山引擎 Secret Access Key"
@@ -45,15 +35,55 @@ cp settings.example.json settings.json
     "base_url": "微信API地址（一般不需要修改）"
   },
   "output": {
-    "base_dir": "输出目录",
-    "images_dir": "图片子目录"
+    "base_dir": "输出目录（默认 ./articles）",
+    "images_dir": "图片子目录（默认 images）",
+    "research_dir": "调研报告子目录（默认 research）"
   }
 }
 ```
 
-## 即梦 API 配置
+## 图片生成配置
 
-即梦是火山引擎提供的图片生成服务，用于生成文章配图（封面图、结构图、概念图等）。
+### 提供商选择
+
+通过 `image_generation.default_provider` 配置默认的图片生成 AI：
+
+- `gemini` - Google Gemini（默认，国际访问）
+- `jimeng` - 即梦 AI / 火山引擎（国内访问稳定）
+
+### Gemini 配置（推荐）
+
+Gemini 是 Google 提供的多模态 AI 服务，支持高质量图片生成。
+
+**获取 API Key**:
+1. 访问 [Google AI Studio](https://aistudio.google.com/apikey)
+2. 登录 Google 账号
+3. 创建或复制 API Key
+
+**配置示例**:
+```json
+{
+  "gemini": {
+    "api_key": "your-gemini-api-key",
+    "model": "gemini-3-pro-image-preview"
+  }
+}
+```
+
+**环境变量替代方案**：
+```bash
+export GEMINI_API_KEY="your-gemini-api-key"
+# 或
+export GOOGLE_API_KEY="your-gemini-api-key"
+```
+
+**支持的宽高比**: 1:1, 2:3, 3:2, 3:4, 4:3, 4:5, 5:4, 9:16, 16:9, 21:9
+
+**支持的图片尺寸**: 1K, 2K, 4K（默认 2K）
+
+### 即梦 AI 配置
+
+即梦是火山引擎提供的图片生成服务，国内访问稳定。
 
 **获取凭证步骤**：
 1. 登录 [火山引擎控制台](https://console.volcengine.com/)
@@ -61,11 +91,23 @@ cp settings.example.json settings.json
 3. 创建或复制 Access Key ID 和 Secret Access Key
 4. 开通「智能创作」服务并确保账户有余额
 
+**配置示例**:
+```json
+{
+  "jimeng": {
+    "access_key_id": "your-access-key-id",
+    "secret_access_key": "your-secret-access-key"
+  }
+}
+```
+
 **环境变量替代方案**：
 ```bash
 export VOLC_ACCESSKEY="your-access-key-id"
 export VOLC_SECRETKEY="your-secret-access-key"
 ```
+
+**支持的宽高比**: 1:1, 16:9, 9:16, 4:3, 3:4, 3:2, 2:3, 21:9, 9:21
 
 ## 注意事项
 

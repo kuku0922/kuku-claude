@@ -4,15 +4,18 @@
 
 AI生成图片可以有效补充技术文章的视觉内容，特别适合创建封面图、概念示意图和场景插画。
 
-**图片生成工具**：即梦 AI（火山引擎）
+**图片生成工具**：
+- **Gemini**（Google Nano Banana Pro）- 默认，支持 4K 高清
+- **即梦 AI**（火山引擎）- 国内访问稳定
 
 ## 重要优化原则
 
-### 1. 图片文字必须使用中文
-- **所有图片上的文字都必须使用简体中文**
+### 1. 图片文字规范
 - 文字数量要少，只保留关键信息
-- 文字必须准确无误，不能出现错别字或拼写错误
-- 在提示词中明确要求："text in simplified Chinese, minimal text, accurate and clear"
+- 文字必须清晰可读，**绝对不能出现乱码**
+- **禁止在图片上显示色号**（如 #282c34）、技术参数等与主题无关的信息
+- **语言选择**：根据图片内容自行判断使用简体中文或英文
+- **语言统一**：同一张图片内保持语言风格一致（全中文或全英文），特殊情况可混用
 
 ### 2. 只生成真正必要的图片
 **必要图片的判断标准**：
@@ -43,27 +46,46 @@ AI生成图片可以有效补充技术文章的视觉内容，特别适合创建
 
 ---
 
-## 快速开始：调用即梦 AI
+## 快速开始
 
 ### 基本用法
 
-使用 `scripts/generate_image.py` 脚本调用即梦 AI API：
+使用 `scripts/generate_image.py` 脚本调用图片生成 API：
 
 ```bash
 uv run -p 3.14 --no-project \
-  --with requests \
+  --with requests --with google-genai --with pillow \
   scripts/generate_image.py \
   --prompt "图片描述提示词" \
-  --output "./output/images/{主题}_cover.png"
+  --output "./output/images/{主题}_cover.png" \
+  --provider "gemini"
 ```
 
 ### 环境配置
 
-**方式一：配置文件（推荐）**
+**Gemini 配置（推荐）**：
 
 编辑 `config/settings.json`：
 ```json
 {
+  "image_generation": {
+    "default_provider": "gemini"
+  },
+  "gemini": {
+    "api_key": "your-gemini-api-key"
+  }
+}
+```
+
+或设置环境变量：`GEMINI_API_KEY`
+
+**即梦 AI 配置**：
+
+```json
+{
+  "image_generation": {
+    "default_provider": "jimeng"
+  },
   "jimeng": {
     "access_key_id": "your-access-key-id",
     "secret_access_key": "your-secret-access-key"
@@ -71,11 +93,7 @@ uv run -p 3.14 --no-project \
 }
 ```
 
-**方式二：环境变量**
-```bash
-export VOLC_ACCESSKEY="your-access-key-id"
-export VOLC_SECRETKEY="your-secret-access-key"
-```
+或设置环境变量：`VOLC_ACCESSKEY` 和 `VOLC_SECRETKEY`
 
 ### 参数说明
 
@@ -84,18 +102,20 @@ export VOLC_SECRETKEY="your-secret-access-key"
 | `--prompt` | 图片生成提示词（必填） | - |
 | `--output` | 输出图片路径（必填） | - |
 | `--aspect-ratio` | 图片宽高比 | 16:9 |
+| `--provider` | 图片生成服务 | gemini |
+| `--image-size` | 图片尺寸 1K/2K/4K（仅 Gemini） | 2K |
 | `--no-auto-rename` | 禁用自动重命名 | 否 |
 
 ### 支持的宽高比
 
-| 宽高比 | 尺寸 | 适用场景 |
-|--------|------|----------|
-| 16:9 | 2560x1440 | 封面图、横版配图 |
-| 1:1 | 2048x2048 | 头像、方形配图 |
-| 4:3 | 2304x1728 | 传统比例 |
-| 9:16 | 1440x2560 | 竖版配图 |
-| 3:2 | 2496x1664 | 照片比例 |
-| 21:9 | 3024x1296 | 超宽横幅 |
+| 宽高比 | Gemini | 即梦尺寸 | 适用场景 |
+|--------|--------|----------|----------|
+| 16:9 | ✅ | 2560x1440 | 封面图、横版配图 |
+| 1:1 | ✅ | 2048x2048 | 头像、方形配图 |
+| 4:3 | ✅ | 2304x1728 | 传统比例 |
+| 9:16 | ✅ | 1440x2560 | 竖版配图 |
+| 3:2 | - | 2496x1664 | 照片比例（仅即梦） |
+| 21:9 | - | 3024x1296 | 超宽横幅（仅即梦） |
 
 ---
 

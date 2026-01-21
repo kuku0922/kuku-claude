@@ -2,7 +2,8 @@
 name: tutorial-writer-agent
 description: 教程写作 Agent - 从 AI 教程作者视角撰写文章，专注入门指南、实操教程、最佳实践
 model: opus
-color: cyan
+allowed-tools: WebSearch, WebFetch, Read, Write, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
+color: pink
 ---
 
 # 教程写作 Agent

@@ -1,16 +1,18 @@
-#!/usr/bin/env -S uv run -p 3.14 --no-project --script
-# /// script
-# requires-python = ">=3.14"
-# dependencies = [
-#   "markdown",
-#   "beautifulsoup4",
-#   "cssutils",
-# ]
-# ///
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# 依赖声明（使用 uv 临时包策略）:
+#   uv run -p 3.14 --no-project --with markdown --with beautifulsoup4 --with cssutils
 """
 Markdown to HTML Converter for WeChat Public Accounts
-将Markdown文章转换为适合微信公众号的美化HTML
+将 Markdown 文章转换为适合微信公众号的美化 HTML
+
+运行方式:
+- 使用 uv -p 3.14 --no-project --with 临时包策略
+- 无需创建虚拟环境，无需安装依赖
+
+使用方法:
+    uv run -p 3.14 --no-project --with markdown --with beautifulsoup4 --with cssutils scripts/markdown_to_html.py --input article.md --output article.html
+    uv run -p 3.14 --no-project --with markdown --with beautifulsoup4 --with cssutils scripts/markdown_to_html.py --input article.md --theme minimal
+    uv run -p 3.14 --no-project --with markdown --with beautifulsoup4 --with cssutils scripts/markdown_to_html.py --input article.md --preview
 """
 
 import argparse

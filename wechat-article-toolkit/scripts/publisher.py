@@ -1,14 +1,20 @@
-#!/usr/bin/env -S uv run -p 3.14 --no-project --script
-# /// script
-# requires-python = ">=3.14"
-# dependencies = [
-#   "requests",
-# ]
-# ///
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# 依赖声明（使用 uv 临时包策略）:
+#   uv run -p 3.14 --no-project --with requests
 """
 微信公众号草稿发布工具
 支持上传封面图片、创建草稿文章
+
+运行方式:
+- 使用 uv -p 3.14 --no-project --with 临时包策略
+- 无需创建虚拟环境，无需安装依赖
+
+使用方法:
+    uv run -p 3.14 --no-project --with requests scripts/publisher.py --title "文章标题" --content article.html
+    uv run -p 3.14 --no-project --with requests scripts/publisher.py --title "文章标题" --content article.html --cover cover.png
+    uv run -p 3.14 --no-project --with requests scripts/publisher.py --interactive
+
+配置文件: 项目目录/.claude/config/settings.json
 """
 
 import os
@@ -21,9 +27,8 @@ from pathlib import Path
 from typing import Optional, Dict, Any
 
 
-def get_plugin_root() -> Path:
-    """获取插件根目录"""
-    return Path(__file__).parent.parent
+# 全局配置缓存
+_config_cache: Optional[Dict[str, Any]] = None
 
 
 def get_project_root() -> Path:
@@ -35,44 +40,42 @@ def get_project_root() -> Path:
     return Path.cwd()
 
 
-def get_config_dir() -> Path:
-    """
-    获取配置目录
-
-    优先级:
-    1. 项目目录/.claude/config/ (最高优先级)
-    2. 插件目录/config/ (降级方案)
-    """
-    # 优先级1: 项目目录配置
-    project_config_dir = get_project_root() / ".claude" / "config"
-    if project_config_dir.exists():
-        return project_config_dir
-
-    # 优先级2: 插件目录配置
-    return get_plugin_root() / "config"
-
-
 def load_config() -> Dict[str, Any]:
     """
     从配置文件加载配置
 
-    配置加载优先级:
-    1. 项目目录/.claude/config/settings.json (最高优先级)
-    2. 插件目录/config/settings.json (降级方案)
+    配置路径: 项目目录/.claude/config/settings.json
     """
-    # 优先级1: 项目目录配置
-    project_config = get_project_root() / ".claude" / "config" / "settings.json"
-    if project_config.exists():
-        with open(project_config, 'r', encoding='utf-8') as f:
-            return json.load(f)
+    global _config_cache
+    if _config_cache is not None:
+        return _config_cache
 
-    # 优先级2: 插件目录配置
-    plugin_config = get_plugin_root() / "config" / "settings.json"
-    if plugin_config.exists():
-        with open(plugin_config, 'r', encoding='utf-8') as f:
-            return json.load(f)
+    config_path = get_project_root() / ".claude" / "config" / "settings.json"
 
-    return {}
+    if not config_path.exists():
+        print(f"⚠️  配置文件不存在: {config_path}", file=sys.stderr)
+        print(f"   请创建配置文件并填入微信公众号配置", file=sys.stderr)
+        _config_cache = {}
+        return _config_cache
+
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            _config_cache = json.load(f)
+            print(f"✓ 已加载配置: {config_path}")
+            return _config_cache
+    except json.JSONDecodeError as e:
+        print(f"❌ 配置文件格式错误: {e}", file=sys.stderr)
+        _config_cache = {}
+        return _config_cache
+    except Exception as e:
+        print(f"❌ 读取配置文件失败: {e}", file=sys.stderr)
+        _config_cache = {}
+        return _config_cache
+
+
+def get_config_dir() -> Path:
+    """获取配置目录"""
+    return get_project_root() / ".claude" / "config"
 
 
 class WeChatPublisher:

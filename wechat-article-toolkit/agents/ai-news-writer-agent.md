@@ -2,6 +2,7 @@
 name: ai-news-writer-agent
 description: AI 新闻写作 Agent - 从 AI 行业观察者视角撰写文章，专注新闻解读、趋势分析、观点评论
 model: opus
+allowed-tools: WebSearch, WebFetch, Read, Write, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
 color: orange
 ---
 

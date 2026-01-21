@@ -1,4 +1,11 @@
 {
+  "image_generation": {
+    "default_provider": "gemini"
+  },
+  "gemini": {
+    "api_key": "your-gemini-api-key-here",
+    "model": "gemini-3-pro-image-preview"
+  },
   "jimeng": {
     "access_key_id": "your-access-key-id-here",
     "secret_access_key": "your-secret-access-key-here"
@@ -9,7 +16,8 @@
     "base_url": "https://api.weixin.qq.com/cgi-bin"
   },
   "output": {
-    "base_dir": "./output",
-    "images_dir": "images"
+    "base_dir": "./articles",
+    "images_dir": "images",
+    "research_dir": "research"
   }
 }

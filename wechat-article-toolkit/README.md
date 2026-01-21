@@ -7,7 +7,7 @@
 - 🤖 **多智能体协作**：10 个专业 Agent 分工协作
 - 🎯 **提示词优化**：基于四块模式自动优化各 Agent 提示词
 - 📝 **多种写作角度**：技术开发者、AI 产品经理、行业观察者、教程作者
-- 🎨 **自动生成图片**：封面图 + 内容结构图
+- 🎨 **自动生成图片**：封面图 + 内容结构图（支持 Google Gemini Nano Banana Pro 和火山引擎即梦 AI）
 - 📄 **精美排版**：10+ 套专业 HTML 模板
 - 🚀 **灵活发布**：写作与发布解耦，支持独立发布命令
 - 🔄 **反爬兜底**：Chrome MCP 自动处理反爬场景
@@ -243,6 +243,13 @@ cp config/settings.example.json config/settings.json
 
 ```json
 {
+  "image_generation": {
+    "default_provider": "gemini"
+  },
+  "gemini": {
+    "api_key": "your-gemini-api-key-here",
+    "model": "gemini-3-pro-image-preview"
+  },
   "jimeng": {
     "access_key_id": "your-access-key-id-here",
     "secret_access_key": "your-secret-access-key-here"
@@ -253,8 +260,9 @@ cp config/settings.example.json config/settings.json
     "base_url": "https://api.weixin.qq.com/cgi-bin"
   },
   "output": {
-    "base_dir": "./output",
-    "images_dir": "images"
+    "base_dir": "./articles",
+    "images_dir": "images",
+    "research_dir": "research"
   }
 }
 ```
@@ -263,6 +271,9 @@ cp config/settings.example.json config/settings.json
 
 | 配置项 | 说明 | 获取方式 |
 |--------|------|----------|
+| `image_generation.default_provider` | 默认图片生成提供商 | gemini（推荐）或 jimeng |
+| `gemini.api_key` | Google Gemini API Key | [Google AI Studio](https://aistudio.google.com/apikey) |
+| `gemini.model` | Gemini 图片生成模型 | gemini-3-pro-image-preview (Nano Banana Pro，支持 4K) 或 gemini-2.5-flash-image (Nano Banana，速度优化) |
 | `jimeng.access_key_id` | 火山引擎 Access Key ID | [火山引擎控制台](https://console.volcengine.com/) → 访问控制 → 访问密钥 |
 | `jimeng.secret_access_key` | 火山引擎 Secret Access Key | 同上 |
 | `wechat.appid` | 微信公众号 AppID | 微信公众平台 → 设置与开发 → 基本配置 |
@@ -293,16 +304,18 @@ cp config/settings.example.json config/settings.json
 
 ```
 your-project/              # 项目根目录（自动识别）
-└── output/                # 文章输出目录
+└── articles/              # 文章输出目录
+    ├── {topic}.md         # Markdown 文件
+    ├── {topic}.html       # HTML 文件
     ├── images/            # 图片目录
-    │   ├── {topic}_cover.png
-    │   ├── {topic}_structure.png
-    │   └── {topic}_image_1.png ...
-    ├── {主题}.md
-    └── {主题}.html
+    │   ├── {topic}-cover.png
+    │   ├── {topic}-structure.png
+    │   └── {topic}-image-1.png ...
+    └── research/          # 调研资料目录
+        └── {topic}-research-report.md
 ```
 
-> `./output` 是相对路径，自动相对于你运行 Claude Code 时的当前目录（项目根目录）。
+> `./articles` 是相对路径，自动相对于你运行 Claude Code 时的当前目录（项目根目录）。
 
 ## 🔗 相关项目
 
