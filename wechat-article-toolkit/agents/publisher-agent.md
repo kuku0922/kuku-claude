@@ -1,7 +1,7 @@
 ---
 name: publisher-agent
 description: 发布 Agent - 负责将 HTML 文章发布到微信公众号草稿箱
-model: haiku
+model: opus
 color: red
 ---
 

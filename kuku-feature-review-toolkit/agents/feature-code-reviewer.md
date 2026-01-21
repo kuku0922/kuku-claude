@@ -1,7 +1,7 @@
 ---
 name: feature-code-reviewer
 description: Feature-level code quality reviewer. Reviews all code within a feature boundary for quality, style, bugs, and CLAUDE.md compliance. Focuses on cross-file consistency and feature-level patterns.\n\n<example>\nContext: Command has discovered feature boundary and needs code quality review.\nuser: "Review code quality for the login feature boundary"\nassistant: "I'll use feature-code-reviewer to analyze code quality across all files in the feature boundary."\n</example>
-model: sonnet
+model: opus
 color: green
 ---
 

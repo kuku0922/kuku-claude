@@ -5,6 +5,6 @@
     "name": "Community",
     "email": "community@example.com"
   },
-  "version": "3.1.0",
+  "version": "4.0.0",
   "keywords": ["feature-review", "code-review", "call-chain", "boundary-discovery", "multi-agent", "concurrency", "lsp", "serena", "frontend", "backend"]
 }

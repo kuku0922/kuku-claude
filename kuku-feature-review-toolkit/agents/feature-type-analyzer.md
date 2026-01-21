@@ -1,7 +1,7 @@
 ---
 name: feature-type-analyzer
 description: Feature-level type design analyzer. Reviews type definitions across frontend and backend, checks API contract type consistency, and analyzes type design quality including encapsulation and invariants.\n\n<example>\nContext: Command has discovered feature boundary with type definitions.\nuser: "Analyze types in the user profile feature"\nassistant: "I'll use feature-type-analyzer to review type consistency across frontend and backend and analyze type design quality."\n</example>
-model: sonnet
+model: opus
 color: blue
 ---
 

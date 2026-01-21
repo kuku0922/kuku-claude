@@ -3,11 +3,6 @@
     "access_key_id": "your-access-key-id-here",
     "secret_access_key": "your-secret-access-key-here"
   },
-  "gemini": {
-    "api_key": "your-gemini-api-key-here",
-    "base_url": "https://generativelanguage.googleapis.com/v1beta",
-    "model": "gemini-3-pro-image-preview"
-  },
   "wechat": {
     "appid": "your-wechat-appid-here",
     "appsecret": "your-wechat-appsecret-here",

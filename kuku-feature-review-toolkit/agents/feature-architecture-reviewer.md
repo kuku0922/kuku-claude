@@ -1,7 +1,7 @@
 ---
 name: feature-architecture-reviewer
 description: Feature-level architecture reviewer. Analyzes layer separation, dependency direction, API contract consistency between frontend and backend, and overall feature structure.\n\n<example>\nContext: Command has discovered feature boundary and needs architecture review.\nuser: "Review architecture of the order management feature"\nassistant: "I'll use feature-architecture-reviewer to analyze layer separation, dependencies, and API contract consistency across the feature."\n</example>
-model: sonnet
+model: opus
 color: purple
 ---
 

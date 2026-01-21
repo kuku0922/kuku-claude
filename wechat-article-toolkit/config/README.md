@@ -39,11 +39,6 @@ cp settings.example.json settings.json
     "access_key_id": "火山引擎 Access Key ID",
     "secret_access_key": "火山引擎 Secret Access Key"
   },
-  "gemini": {
-    "api_key": "你的 Gemini API Key",
-    "base_url": "API 地址（可选，用于代理）",
-    "model": "模型名称"
-  },
   "wechat": {
     "appid": "微信公众号 AppID（wx开头18位）",
     "appsecret": "微信公众号 AppSecret",
@@ -56,9 +51,9 @@ cp settings.example.json settings.json
 }
 ```
 
-### 即梦 API 配置
+## 即梦 API 配置
 
-即梦是火山引擎提供的图片生成服务，默认用于封面图生成。
+即梦是火山引擎提供的图片生成服务，用于生成文章配图（封面图、结构图、概念图等）。
 
 **获取凭证步骤**：
 1. 登录 [火山引擎控制台](https://console.volcengine.com/)

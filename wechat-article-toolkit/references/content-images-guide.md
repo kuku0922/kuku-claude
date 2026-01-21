@@ -361,10 +361,11 @@ Square aspect ratio (1:1), high quality.
 ### 步骤4：调用API生成
 
 ```bash
-python scripts/generate_image.py \
+uv run -p 3.14 --no-project \
+  --with requests \
+  scripts/generate_image.py \
   --prompt "你构建的完整提示词" \
-  --api gemini \
-  --output "输出路径/comparison.png"
+  --output "输出路径/{主题}_comparison.png"
 ```
 
 **参数建议**：
@@ -438,19 +439,26 @@ VSCode的启动时间为0.8秒，比Cursor的1.2秒快33%。在代码
 
 ### 文件命名规范
 
-**命名模式**：`{类型}-{主题}.png`
+**命名模式**：`{主题}_{类型}.png`
 
 **示例**：
 ```
-performance-comparison.png    # 性能对比图
-architecture-diagram.png      # 架构图
-workflow.png                  # 流程图
-before-after-comparison.png   # 前后对比图
+claude_code_comparison.png    # 性能对比图
+vscode_architecture.png       # 架构图
+mcp_workflow.png              # 流程图
+cursor_before_after.png       # 前后对比图
+```
+
+**或使用序号**：
+```
+claude_code_image_1.png       # 第一张配图
+claude_code_image_2.png       # 第二张配图
 ```
 
 **避免**：
 ```
 image1.png              # 无意义的名称
+comparison.png          # 固定名称（多张图会覆盖）
 图片_final_v2.png       # 混用中英文、版本号
 ```
 

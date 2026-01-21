@@ -1,7 +1,7 @@
 ---
 name: feature-code-simplifier
 description: Feature-level code simplifier. Analyzes code complexity across a feature boundary and suggests simplifications that improve clarity and maintainability while preserving functionality. Focuses on cross-file patterns and feature-level refactoring opportunities.\n\n<example>\nContext: Command has discovered feature boundary and needs code simplification review.\nuser: "Simplify the checkout feature code"\nassistant: "I'll use feature-code-simplifier to identify complexity across the feature and suggest simplifications."\n</example>
-model: sonnet
+model: opus
 color: orange
 ---
 

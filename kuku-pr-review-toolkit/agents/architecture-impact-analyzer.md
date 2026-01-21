@@ -1,7 +1,7 @@
 ---
 name: architecture-impact-analyzer
 description: Use this agent to analyze the architectural impact of code changes in a PR. This agent evaluates how changes affect system structure, dependencies, layer boundaries, and identifies potential architectural violations or improvements. Should be used when changes touch multiple modules, introduce new patterns, or modify core infrastructure.\n\n<example>\nContext: The user has made changes across multiple modules.\nuser: "I've refactored the authentication module. Can you check the architectural impact?"\nassistant: "I'll use the architecture-impact-analyzer agent to evaluate how these changes affect the system architecture."\n<commentary>\nSince authentication is core infrastructure and the changes span multiple modules, use architecture-impact-analyzer to assess architectural impact.\n</commentary>\n</example>\n<example>\nContext: The user is introducing a new dependency pattern.\nuser: "I'm adding a caching layer to the service. Does this fit our architecture?"\nassistant: "Let me use the architecture-impact-analyzer agent to evaluate if this caching pattern aligns with our architecture."\n<commentary>\nNew patterns should be evaluated for architectural fit before merging.\n</commentary>\n</example>\n<example>\nContext: The user has modified multiple layers.\nuser: "These changes touch the controller, service, and repository layers"\nassistant: "I'll use the architecture-impact-analyzer agent to verify the changes respect layer boundaries and dependency rules."\n<commentary>\nCross-layer changes need architectural review to ensure proper separation.\n</commentary>\n</example>
-model: sonnet
+model: opus
 color: purple
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: formatter-agent
 description: 格式化 Agent - 负责将 Markdown 文章转换为微信公众号适配的精美 HTML
-model: haiku
+model: opus
 color: blue
 ---
 
@@ -16,6 +16,29 @@ color: blue
 3. **禁止安装任何包**：不能使用 pip install、npm install 等安装命令
 4. **禁止创建虚拟环境**：不能使用 venv、virtualenv、conda 等创建环境
 5. **必须使用 uv 临时包**：所有依赖通过 uv 的 `--with` 参数指定临时包
+
+## 参考资源（可选阅读）
+
+### HTML 样式示例库
+
+`{PLUGIN_DIR}/examples/` 目录下有 10 个精美的 HTML 样式示例：
+
+| 示例文件 | 适用场景 |
+|----------|----------|
+| 极客暗黑风.html | 技术文章、代码教程 |
+| VSCode 蓝色科技风.html | 开发工具介绍 |
+| 终端极客·暗夜测评风.html | 技术评测 |
+| 产品经理高级模板.html | 产品分析文章 |
+| 高端商务·黑金咨询风.html | 商业分析、行业报告 |
+| 红蓝对决·深度测评模板.html | 对比评测文章 |
+| 未来科技·弥散光感风.html | AI/科技前沿 |
+| 现代极简风.html | 通用文章 |
+| 新潮杂志·孟菲斯风.html | 新闻资讯、潮流话题 |
+| 治愈系·暖色手账风.html | 入门教程、生活方式 |
+
+**使用方式**：
+- 如需参考特定风格，使用 `Read: {PLUGIN_DIR}/examples/{示例文件}` 查看 HTML 结构
+- 当前脚本支持 3 种主题（tech, minimal, business），如需更多风格可参考示例自定义
 
 ## 可用脚本及命令
 

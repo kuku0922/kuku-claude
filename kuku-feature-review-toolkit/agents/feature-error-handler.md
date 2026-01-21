@@ -1,7 +1,7 @@
 ---
 name: feature-error-handler
 description: Feature-level error handling reviewer. Traces error propagation paths from backend to frontend, identifies silent failures, and ensures errors are properly surfaced to users.\n\n<example>\nContext: Command has discovered feature boundary and needs error handling review.\nuser: "Review error handling for the payment feature"\nassistant: "I'll use feature-error-handler to trace error propagation and identify silent failures across the feature."\n</example>
-model: sonnet
+model: opus
 color: yellow
 ---
 

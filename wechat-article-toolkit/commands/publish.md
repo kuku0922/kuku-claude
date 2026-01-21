@@ -106,7 +106,7 @@ Task(
     - 封面图：{cover_path}
     - 标题：{title}
   ",
-  model: "haiku"
+  model: "opus"
 )
 ```
 

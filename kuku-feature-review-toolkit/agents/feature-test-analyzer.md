@@ -1,7 +1,7 @@
 ---
 name: feature-test-analyzer
 description: Feature-level test coverage analyzer. Reviews test coverage across the complete feature boundary, identifies critical test gaps, and ensures both frontend and backend have adequate tests.\n\n<example>\nContext: Command has discovered feature boundary and needs test coverage analysis.\nuser: "Analyze test coverage for the checkout feature"\nassistant: "I'll use feature-test-analyzer to review test coverage across frontend and backend components of the feature."\n</example>
-model: sonnet
+model: opus
 color: cyan
 ---
 

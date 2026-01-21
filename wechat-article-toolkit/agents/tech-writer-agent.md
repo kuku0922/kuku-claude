@@ -31,6 +31,27 @@ color: green
 
 Markdown 格式的技术文章（2000-3000 字）。
 
+## 参考文档（执行前必读）
+
+```
+Read: {PLUGIN_DIR}/references/writing-style.md
+```
+
+**必须遵守的核心规范**：
+
+1. **只输出正文内容**
+   - ❌ 禁止添加「参考资料」「延伸阅读」「配图说明」等章节
+   - ✅ 只保留：标题 + 正文章节 + 结尾总结
+
+2. **链接纯文本格式**
+   - ❌ `[官网](https://example.com/)`
+   - ✅ `官方网站：https://example.com/`
+
+3. **配图精简原则**
+   - 每篇文章建议 1-3 张图片
+   - 只生成真正必要的图（数据对比图、架构图）
+   - 不生成装饰性配图
+
 ## 写作风格
 
 ### 语言特点
@@ -128,7 +149,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 message = client.messages.create(
-    model="claude-sonnet-4-20250514",
+    model="opus",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Hello, Claude!"}

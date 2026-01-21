@@ -1,7 +1,7 @@
 ---
 name: feature-comment-analyzer
 description: Feature-level comment analyzer. Reviews all comments and documentation within a feature boundary for accuracy, completeness, and long-term maintainability. Checks cross-file documentation consistency.\n\n<example>\nContext: Command has discovered feature boundary and needs comment review.\nuser: "Review comments and documentation for the auth feature"\nassistant: "I'll use feature-comment-analyzer to verify all comments within the feature boundary are accurate and consistent."\n</example>
-model: sonnet
+model: opus
 color: green
 ---
 

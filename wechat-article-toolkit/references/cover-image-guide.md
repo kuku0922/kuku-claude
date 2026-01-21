@@ -335,34 +335,26 @@ All Chinese characters must be clear and correct.
 
 ### 步骤4：调用API生成
 
-**使用generate_image.py脚本**：
+**使用 generate_image.py 脚本**：
 
 ```bash
-cd /root/.claude/skills/wechat-tech-writer
-
-python scripts/generate_image.py \
+uv run -p 3.14 --no-project \
+  --with requests \
+  scripts/generate_image.py \
   --prompt "你构建的完整提示词" \
-  --api gemini \
-  --output "输出路径/cover.png"
+  --output "输出路径/{topic}_cover.png"
 ```
-
-**API选择建议**：
-- **首选Gemini**：质量高，中文支持好，速度快
-- **备选DALL-E**：质量稳定，但中文可能有乱码
 
 **常见参数**：
 ```bash
---api gemini           # 使用Gemini API（推荐）
---api dalle            # 使用DALL-E API
---quality hd           # 高清质量（仅DALL-E）
---size 1792x1024       # 16:9尺寸（仅DALL-E）
---proxy http://...     # 设置代理（如需要）
+--aspect-ratio 16:9     # 设置宽高比
+--no-auto-rename        # 禁用自动重命名
 ```
 
 **错误处理**：
-- API密钥未配置 → 检查环境变量 `GEMINI_API_KEY`
+- API 密钥未配置 → 检查 config/settings.json 或环境变量
 - 生成失败 → 简化提示词，减少复杂要求
-- 中文乱码 → 强化提示词中的中文要求，或换API
+- 中文乱码 → 强化提示词中的中文要求
 
 ### 步骤5：验证封面图质量
 
@@ -405,13 +397,13 @@ python scripts/generate_image.py \
 
 **保存最佳版本**：
 ```bash
-# 生成多个版本
-python scripts/generate_image.py --prompt "..." --output cover_v1.png
-python scripts/generate_image.py --prompt "..." --output cover_v2.png
-python scripts/generate_image.py --prompt "..." --output cover_v3.png
+# 生成多个版本（使用动态命名避免覆盖）
+uv run ... --output {topic}_cover_v1.png
+uv run ... --output {topic}_cover_v2.png
+uv run ... --output {topic}_cover_v3.png
 
 # 选择最佳版本重命名
-cp cover_v2.png cover.png
+cp {topic}_cover_v2.png {topic}_cover.png
 ```
 
 ---
@@ -476,7 +468,7 @@ Visual mood: like launching a rocket (exciting), discovering a secret (mysteriou
    IMPORTANT: All text must be in simplified Chinese (简体中文), clear and readable.
    ```
 
-2. 如果仍然失败，换用DALL-E API
+2. 如果仍然失败，尝试简化提示词或多次重试
 
 ### Q2：封面图颜色与预期不符？
 
@@ -508,11 +500,10 @@ Visual mood: like launching a rocket (exciting), discovering a secret (mysteriou
 
 ### Q5：封面图质量不够高清？
 
-**原因**：API默认设置或压缩
+**原因**：API 默认设置或压缩
 
 **解决**：
-- DALL-E使用：`--quality hd --size 1792x1024`
-- Gemini已默认高质量，无需额外设置
+- 即梦 AI 默认生成 2K 分辨率（2560x1440）
 - 生成后检查文件大小，应 > 200KB
 
 ---

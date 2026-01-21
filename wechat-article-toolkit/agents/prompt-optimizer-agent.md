@@ -1,7 +1,7 @@
 ---
 name: prompt-optimizer-agent
 description: 提示词优化 Agent：基于四块模式和示例驱动原则，为各写作 Agent 生成高质量提示词
-model: haiku
+model: opus
 allowed-tools: Read
 ---
 
