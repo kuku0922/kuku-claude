@@ -35,6 +35,10 @@ cp settings.example.json settings.json
 
 ```json
 {
+  "jimeng": {
+    "access_key_id": "火山引擎 Access Key ID",
+    "secret_access_key": "火山引擎 Secret Access Key"
+  },
   "gemini": {
     "api_key": "你的 Gemini API Key",
     "base_url": "API 地址（可选，用于代理）",
@@ -50,6 +54,22 @@ cp settings.example.json settings.json
     "images_dir": "图片子目录"
   }
 }
+```
+
+### 即梦 API 配置
+
+即梦是火山引擎提供的图片生成服务，默认用于封面图生成。
+
+**获取凭证步骤**：
+1. 登录 [火山引擎控制台](https://console.volcengine.com/)
+2. 进入「访问控制」→「访问密钥」
+3. 创建或复制 Access Key ID 和 Secret Access Key
+4. 开通「智能创作」服务并确保账户有余额
+
+**环境变量替代方案**：
+```bash
+export VOLC_ACCESSKEY="your-access-key-id"
+export VOLC_SECRETKEY="your-secret-access-key"
 ```
 
 ## 注意事项

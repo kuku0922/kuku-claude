@@ -16,35 +16,33 @@ color: pink
 3. **禁止安装任何包**：不能使用 pip install、npm install 等安装命令
 4. **禁止创建虚拟环境**：不能使用 venv、virtualenv、conda 等创建环境
 5. **必须使用 uv 临时包**：所有依赖通过 uv 的 `--with` 参数指定临时包
-6. **禁止直接调用 API**：不能手动构造 HTTP 请求调用 Gemini/OpenAI 等 API
+6. **禁止直接调用 API**：不能手动构造 HTTP 请求调用即梦/Gemini/OpenAI 等 API
 
 ## 可用脚本及命令
 
 ### 脚本: generate_image.py
 
-**功能**：使用 Gemini API 生成图片
+**功能**：使用即梦 AI API 生成图片（默认），也支持 Gemini
 
 **完整命令（必须使用）**：
 ```bash
-ALL_PROXY="" all_proxy="" uv run -p 3.14 --no-project \
-  --with google-genai \
+uv run -p 3.14 --no-project \
+  --with requests \
   {PLUGIN_DIR}/scripts/generate_image.py \
   --prompt "{PROMPT}" \
-  --api gemini \
   --output "{OUTPUT_PATH}"
 ```
 
 **临时包依赖**：
-- `--with google-genai`
+- `--with requests`（即梦 API）
+- `--with google-genai`（仅 Gemini API 需要）
 
 **参数说明**：
 - `--prompt`: 图片生成提示词（必填）
-- `--api`: 使用的 API，可选值：gemini, imagen, anthropic, claude（默认 gemini）
+- `--api`: 使用的 API，可选值：jimeng（默认）, gemini, anthropic
 - `--output`: 输出图片路径（必填）
 - `--aspect-ratio`: 图片宽高比（可选，默认 16:9）
 - `--no-auto-rename`: 禁用自动重命名（可选）
-
-**⚠️ 重要**：必须在命令前添加 `ALL_PROXY="" all_proxy=""` 清空代理，否则可能报错。
 
 ---
 
@@ -125,21 +123,19 @@ Text must be in simplified Chinese, accurate and clear, no garbled characters.
 **步骤 3.1**：构建生成命令
 
 ```bash
-ALL_PROXY="" all_proxy="" uv run -p 3.14 --no-project \
-  --with google-genai \
+uv run -p 3.14 --no-project \
+  --with requests \
   {PLUGIN_DIR}/scripts/generate_image.py \
   --prompt "{CONSTRUCTED_PROMPT}" \
-  --api gemini \
   --output cover.png
 ```
 
 **完整示例**：
 ```bash
-ALL_PROXY="" all_proxy="" uv run -p 3.14 --no-project \
-  --with google-genai \
+uv run -p 3.14 --no-project \
+  --with requests \
   /path/to/wechat-article-toolkit/scripts/generate_image.py \
   --prompt "A cover image for WeChat article about Claude Code beginner guide. Blue-purple gradient background. Layout: Split into two distinct zones (left 40%, right 60%). Left zone: title 'Claude Code' in bold, subtitle '零基础入门指南' in Chinese, text aligned left, clear and readable. Right zone: code editor icons, terminal windows, AI assistant icons, 3D style, modern tech aesthetic. Visual elements should not overlap with text zone. Clean design, professional look, 2.35:1 aspect ratio. Text must be in simplified Chinese, accurate and clear, no garbled characters." \
-  --api gemini \
   --output cover.png
 ```
 
@@ -188,32 +184,39 @@ ALL_PROXY="" all_proxy="" uv run -p 3.14 --no-project \
 
 ## 常见问题
 
-### 问题 1：代理报错
-
-**错误信息**：`Unknown scheme for proxy URL URL('socks5h://...')`
-
-**解决方案**：确保命令前有 `ALL_PROXY="" all_proxy=""`
-
-### 问题 2：中文乱码
+### 问题 1：中文乱码
 
 **解决方案**：在提示词中强调
 ```
 Text must be in simplified Chinese, accurate and clear, no garbled characters.
 ```
 
-### 问题 3：文字与图片重叠
+### 问题 2：文字与图片重叠
 
 **解决方案**：在提示词中强调分区
 ```
 Layout: Split into two distinct zones. Visual elements should not overlap with text zone.
 ```
 
-### 问题 4：API Key 未配置
+### 问题 3：API Key 未配置
 
-**解决方案**：
-1. 项目配置：编辑 `.claude/config/settings.json`，设置 `gemini.api_key`
-2. 插件配置：编辑 `{PLUGIN_DIR}/config/settings.json`
-3. 或设置环境变量 `GEMINI_API_KEY`
+**解决方案**（即梦 API - 默认）：
+1. 项目配置：编辑 `.claude/config/settings.json`，设置：
+   ```json
+   {
+     "jimeng": {
+       "access_key_id": "你的 Access Key ID",
+       "secret_access_key": "你的 Secret Access Key"
+     }
+   }
+   ```
+2. 或设置环境变量 `VOLC_ACCESSKEY` 和 `VOLC_SECRETKEY`
+3. 获取凭证：登录 [火山引擎控制台](https://console.volcengine.com/) → 访问控制 → 访问密钥
+
+**解决方案**（Gemini API）：
+1. 编辑配置文件，设置 `gemini.api_key`
+2. 或设置环境变量 `GEMINI_API_KEY`
+3. 命令中添加 `--api gemini` 并使用 `--with google-genai`
 
 ---
 
@@ -230,12 +233,12 @@ Layout: Split into two distinct zones. Visual elements should not overlap with t
 
 ❌ **以下行为严格禁止**：
 
-1. 编写 Python 脚本调用 Gemini/OpenAI API
+1. 编写 Python 脚本调用即梦/Gemini/OpenAI API
 2. 使用 `python` 命令直接运行脚本
 3. 使用 `pip install` 安装任何包
 4. 创建 `.venv` 或其他虚拟环境
 5. 使用 requests/httpx 等库直接发送 HTTP 请求
-6. 手动构造 API 的请求参数
+6. 手动构造 API 的请求参数或签名
 7. 修改预定义脚本的源代码
 8. 使用其他图片生成工具或服务
-9. 省略 `--with google-genai` 临时包参数
+9. 省略 `--with requests` 临时包参数（即梦 API）
