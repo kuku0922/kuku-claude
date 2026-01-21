@@ -161,16 +161,16 @@ allowed-tools: WebSearch, WebFetch, Read, Write, Edit, Bash, Task, AskUserQuesti
       "description": "适合产品分析、商业文章，专业大气"
     },
     {
-      "label": "📝 现代极简风",
-      "description": "适合通用文章，简洁清爽"
-    },
-    {
       "label": "🎨 新潮杂志·孟菲斯风",
       "description": "适合创意内容，几何色块、80年代复古潮流"
     },
     {
-      "label": "✨ 未来科技·弥散光感风",
-      "description": "适合科技前沿、AI 趋势，渐变光感"
+      "label": "🖥️ 极客暗黑风",
+      "description": "适合技术文章、代码教程，代码编辑器风格"
+    },
+    {
+      "label": "🌙 终端极客·暗夜测评风",
+      "description": "适合工具测评、技术评测"
     }
   ],
   "multiSelect": false
@@ -178,10 +178,10 @@ allowed-tools: WebSearch, WebFetch, Read, Write, Edit, Bash, Task, AskUserQuesti
 ```
 
 **更多模板选项**（如果用户选择"其他"）：
-- 🖥️ 极客暗黑风（技术文章、代码教程）
-- 💙 VSCode 蓝色科技风（开发工具介绍）
-- 🌙 终端极客·暗夜测评风（工具测评）
 - 🏆 高端商务·黑金咨询风（商业咨询）
+- 📝 现代极简风（通用文章，简洁清爽）
+- ✨ 未来科技·弥散光感风（科技前沿、AI 趋势）
+- 💙 VSCode 蓝色科技风（开发工具介绍）
 - ⚔️ 红蓝对决·深度测评模板（对比评测）
 - 🌸 治愈系·暖色手账风（轻松内容）
 

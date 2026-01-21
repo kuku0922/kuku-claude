@@ -46,6 +46,44 @@ color: cyan
 请检查 API 配置或网络连接。
 ```
 
+## 执行约束（EXECUTION CONSTRAINTS）
+
+⚠️ **快速失败原则 - 必须严格遵守**
+
+### 重试限制
+- **同一操作最大重试次数**: 3 次
+- **方法切换上限**: 最多尝试 3 种不同方法
+- **总尝试上限**: 单个任务最多 9 次尝试（3 方法 × 3 重试）
+
+### 强制失败条件
+当遇到以下任一情况时，**必须立即停止并报告错误**：
+1. 同一操作连续失败 3 次
+2. 已尝试 3 种不同方法均失败
+3. 依赖的外部服务/API 不可用
+4. 缺少必要的配置、权限或资源
+5. 遇到无法理解或解析的输入
+
+### 禁止行为
+- ❌ 静默忽略错误继续执行
+- ❌ 超过重试限制后继续尝试
+- ❌ 在不同方法间无限循环
+- ❌ 自行"修复"问题而不通知调用方
+
+### 错误报告格式
+```
+❌ AGENT_FAILED
+
+任务: {任务描述}
+失败原因: {具体原因}
+已尝试方法:
+  1. {方法1} - {结果}
+  2. {方法2} - {结果}
+  3. {方法3} - {结果}
+建议: {下一步建议或需要用户提供的信息}
+```
+
+---
+
 ## 图片质量红线（QUALITY RED LINES）
 
 ⛔ **以下问题绝对不能出现在生成的图片中**：
@@ -87,7 +125,7 @@ Keep text language consistent within the image.
 ### 1. 封面图生成指南
 
 ```
-Read: {PLUGIN_DIR}/references/cover-image-guide.md
+Read: ${CLAUDE_PLUGIN_ROOT}/references/cover-image-guide.md
 ```
 
 **包含内容**：
@@ -99,7 +137,7 @@ Read: {PLUGIN_DIR}/references/cover-image-guide.md
 ### 2. 内容配图指南
 
 ```
-Read: {PLUGIN_DIR}/references/content-images-guide.md
+Read: ${CLAUDE_PLUGIN_ROOT}/references/content-images-guide.md
 ```
 
 **包含内容**：
@@ -111,7 +149,7 @@ Read: {PLUGIN_DIR}/references/content-images-guide.md
 ### 3. AI 图片生成详细指南（可选参考）
 
 ```
-Read: {PLUGIN_DIR}/references/ai-image-generation.md
+Read: ${CLAUDE_PLUGIN_ROOT}/references/ai-image-generation.md
 ```
 
 **包含内容**：
@@ -144,7 +182,7 @@ Step 3: 构建提示词并执行生成
 ```bash
 uv run -p 3.14 --no-project \
   --with requests --with google-genai --with pillow \
-  {PLUGIN_DIR}/scripts/generate_image.py \
+  ${CLAUDE_PLUGIN_ROOT}/scripts/generate_image.py \
   --prompt "{PROMPT}" \
   --output "{OUTPUT_PATH}" \
   --aspect-ratio "{ASPECT_RATIO}" \
@@ -574,10 +612,7 @@ Text must be clear and readable. No garbled characters, no color codes.
 
 ### Phase 1: 分析输入
 
-**步骤 1.1**：确定插件目录
-```
-PLUGIN_DIR = 查找 wechat-article-toolkit 插件的安装路径
-```
+**步骤 1.1**：插件目录已通过 `${CLAUDE_PLUGIN_ROOT}` 环境变量自动获取
 
 **步骤 1.2**：解析图片请求
 - `image_type`: cover / structure / comparison / architecture / workflow / custom
@@ -611,7 +646,7 @@ PLUGIN_DIR = 查找 wechat-article-toolkit 插件的安装路径
 ```bash
 uv run -p 3.14 --no-project \
   --with requests --with google-genai --with pillow \
-  {PLUGIN_DIR}/scripts/generate_image.py \
+  ${CLAUDE_PLUGIN_ROOT}/scripts/generate_image.py \
   --prompt "{CONSTRUCTED_PROMPT}" \
   --output "{OUTPUT_PATH}" \
   --aspect-ratio "{ASPECT_RATIO}"

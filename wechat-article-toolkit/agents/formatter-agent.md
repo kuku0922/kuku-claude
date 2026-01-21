@@ -40,11 +40,49 @@ color: magenta
 请检查脚本或配置是否正确。
 ```
 
+## 执行约束（EXECUTION CONSTRAINTS）
+
+⚠️ **快速失败原则 - 必须严格遵守**
+
+### 重试限制
+- **同一操作最大重试次数**: 3 次
+- **方法切换上限**: 最多尝试 3 种不同方法
+- **总尝试上限**: 单个任务最多 9 次尝试（3 方法 × 3 重试）
+
+### 强制失败条件
+当遇到以下任一情况时，**必须立即停止并报告错误**：
+1. 同一操作连续失败 3 次
+2. 已尝试 3 种不同方法均失败
+3. 依赖的外部服务/API 不可用
+4. 缺少必要的配置、权限或资源
+5. 遇到无法理解或解析的输入
+
+### 禁止行为
+- ❌ 静默忽略错误继续执行
+- ❌ 超过重试限制后继续尝试
+- ❌ 在不同方法间无限循环
+- ❌ 自行"修复"问题而不通知调用方
+
+### 错误报告格式
+```
+❌ AGENT_FAILED
+
+任务: {任务描述}
+失败原因: {具体原因}
+已尝试方法:
+  1. {方法1} - {结果}
+  2. {方法2} - {结果}
+  3. {方法3} - {结果}
+建议: {下一步建议或需要用户提供的信息}
+```
+
+---
+
 ## 参考资源（可选阅读）
 
 ### HTML 样式示例库
 
-`{PLUGIN_DIR}/examples/` 目录下有 10 个精美的 HTML 样式示例：
+`${CLAUDE_PLUGIN_ROOT}/examples/` 目录下有 10 个精美的 HTML 样式示例：
 
 | 示例文件 | 适用场景 |
 |----------|----------|
@@ -60,7 +98,7 @@ color: magenta
 | 治愈系·暖色手账风.html | 入门教程、生活方式 |
 
 **使用方式**：
-- 如需参考特定风格，使用 `Read: {PLUGIN_DIR}/examples/{示例文件}` 查看 HTML 结构
+- 如需参考特定风格，使用 `Read: ${CLAUDE_PLUGIN_ROOT}/examples/{示例文件}` 查看 HTML 结构
 - 当前脚本支持 3 种主题（tech, minimal, business），如需更多风格可参考示例自定义
 
 ## 可用脚本及命令
@@ -75,7 +113,7 @@ uv run -p 3.14 --no-project \
   --with markdown \
   --with beautifulsoup4 \
   --with cssutils \
-  {PLUGIN_DIR}/scripts/markdown_to_html.py \
+  ${CLAUDE_PLUGIN_ROOT}/scripts/markdown_to_html.py \
   --input "{INPUT_MD}" \
   --output "{OUTPUT_HTML}" \
   --theme {THEME}
@@ -99,7 +137,7 @@ uv run -p 3.14 --no-project \
 **完整命令（必须使用）**：
 ```bash
 uv run -p 3.14 --no-project \
-  {PLUGIN_DIR}/scripts/convert-code-blocks.py \
+  ${CLAUDE_PLUGIN_ROOT}/scripts/convert-code-blocks.py \
   "{INPUT_HTML}" "{OUTPUT_HTML}"
 ```
 
@@ -117,10 +155,7 @@ uv run -p 3.14 --no-project \
 
 ### Phase 1: 环境准备
 
-**步骤 1.1**：确定插件目录
-```
-PLUGIN_DIR = 查找 wechat-article-toolkit 插件的安装路径
-```
+**步骤 1.1**：插件目录已通过 `${CLAUDE_PLUGIN_ROOT}` 环境变量自动获取
 
 **步骤 1.2**：确认输入文件
 - 使用 Read 工具读取 Markdown 文件
@@ -150,7 +185,7 @@ uv run -p 3.14 --no-project \
   --with markdown \
   --with beautifulsoup4 \
   --with cssutils \
-  {PLUGIN_DIR}/scripts/markdown_to_html.py \
+  ${CLAUDE_PLUGIN_ROOT}/scripts/markdown_to_html.py \
   --input "{MARKDOWN_FILE}" \
   --output "{OUTPUT_DIR}/{ARTICLE_NAME}.html" \
   --theme {SELECTED_THEME}
@@ -178,7 +213,7 @@ uv run -p 3.14 --no-project \
 
 ```bash
 uv run -p 3.14 --no-project \
-  {PLUGIN_DIR}/scripts/convert-code-blocks.py \
+  ${CLAUDE_PLUGIN_ROOT}/scripts/convert-code-blocks.py \
   "{INPUT_HTML}" "{OUTPUT_HTML}"
 ```
 

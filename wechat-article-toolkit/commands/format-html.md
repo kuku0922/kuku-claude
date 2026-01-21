@@ -152,7 +152,7 @@ Task(
     - 输入文件：{markdown_path}
     - 输出目录：{output_dir}
     - 主题：{theme}
-    - 参考示例：{PLUGIN_DIR}/examples/{template_file}
+    - 参考示例：${CLAUDE_PLUGIN_ROOT}/examples/{template_file}
   ",
   model: "opus"
 )
@@ -161,15 +161,12 @@ Task(
 **或者直接执行命令**（更快）：
 
 ```bash
-# 定位插件目录
-PLUGIN_DIR=$(find ~/.claude -name "wechat-article-toolkit" -type d 2>/dev/null | head -1)
-
-# 执行转换
+# 执行转换（${CLAUDE_PLUGIN_ROOT} 会自动替换为插件路径）
 uv run -p 3.14 --no-project \
   --with markdown \
   --with beautifulsoup4 \
   --with cssutils \
-  ${PLUGIN_DIR}/scripts/markdown_to_html.py \
+  ${CLAUDE_PLUGIN_ROOT}/scripts/markdown_to_html.py \
   --input "{MARKDOWN_FILE}" \
   --output "{OUTPUT_DIR}/{ARTICLE_NAME}.html" \
   --theme {THEME}
@@ -181,7 +178,7 @@ uv run -p 3.14 --no-project \
 
 ```bash
 uv run -p 3.14 --no-project \
-  ${PLUGIN_DIR}/scripts/convert-code-blocks.py \
+  ${CLAUDE_PLUGIN_ROOT}/scripts/convert-code-blocks.py \
   "{INPUT_HTML}" "{OUTPUT_HTML}"
 ```
 
