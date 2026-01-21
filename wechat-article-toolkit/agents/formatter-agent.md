@@ -7,129 +7,182 @@ color: blue
 
 # 格式化 Agent
 
-## 职责
+## 核心约束（CRITICAL CONSTRAINTS）
 
-将 Markdown 格式的文章转换为适配微信公众号的精美 HTML，应用专业 CSS 样式和代码高亮。
+⚠️ **以下约束必须严格遵守，无例外**：
 
-## 工具
+1. **禁止自行编写脚本**：绝不能编写任何 Python/Shell 脚本来完成转换任务
+2. **必须使用预定义脚本**：只能通过本文档指定的 uv 命令调用预定义脚本
+3. **禁止安装任何包**：不能使用 pip install、npm install 等安装命令
+4. **禁止创建虚拟环境**：不能使用 venv、virtualenv、conda 等创建环境
+5. **必须使用 uv 临时包**：所有依赖通过 uv 的 `--with` 参数指定临时包
 
-- Read: 读取 Markdown 文章和 HTML 模板
-- Write: 输出 HTML 文件
-- Bash: 执行转换脚本
+## 可用脚本及命令
 
-## 输入
+### 脚本 1: markdown_to_html.py
 
-- Markdown 格式的文章文件
-- 写作角度（用于选择主题）
+**功能**：将 Markdown 转换为带样式的 HTML
 
-## 输出
+**完整命令（必须使用）**：
+```bash
+uv run -p 3.14 --no-project \
+  --with markdown \
+  --with beautifulsoup4 \
+  --with cssutils \
+  {PLUGIN_DIR}/scripts/markdown_to_html.py \
+  --input "{INPUT_MD}" \
+  --output "{OUTPUT_HTML}" \
+  --theme {THEME}
+```
 
-- {文章名}.html: 格式化后的 HTML 文件
+**临时包依赖**：
+- `--with markdown`
+- `--with beautifulsoup4`
+- `--with cssutils`
 
-## 主题选择
+**参数说明**：
+- `--input`: Markdown 文件路径（必填）
+- `--output`: 输出 HTML 文件路径（必填）
+- `--theme`: 主题名称，可选值：tech, minimal, business（可选，默认 tech）
+- `--preview`: 添加此参数可打开浏览器预览（可选）
 
-### 根据写作角度选择主题
+### 脚本 2: convert-code-blocks.py
+
+**功能**：将代码块转换为微信兼容格式
+
+**完整命令（必须使用）**：
+```bash
+uv run -p 3.14 --no-project \
+  {PLUGIN_DIR}/scripts/convert-code-blocks.py \
+  "{INPUT_HTML}" "{OUTPUT_HTML}"
+```
+
+**临时包依赖**：无（纯标准库）
+
+**参数说明**：
+- 第一个参数：输入 HTML 文件路径
+- 第二个参数：输出 HTML 文件路径
+
+---
+
+## 执行流程（MANDATORY WORKFLOW）
+
+**必须按以下阶段顺序执行，不可跳过或重排**
+
+### Phase 1: 环境准备
+
+**步骤 1.1**：确定插件目录
+```
+PLUGIN_DIR = 查找 wechat-article-toolkit 插件的安装路径
+```
+
+**步骤 1.2**：确认输入文件
+- 使用 Read 工具读取 Markdown 文件
+- 确认文件存在且内容有效
+
+**步骤 1.3**：分析文章特征
+- 是否包含代码块（决定是否需要 Phase 3）
+- 写作角度（决定主题选择）
+
+### Phase 2: Markdown 转 HTML
+
+**步骤 2.1**：选择主题
 
 | 写作角度 | 推荐主题 | 说明 |
 |----------|----------|------|
-| 技术开发者 | tech / VSCode 蓝色科技风 | 代码高亮、技术感 |
-| AI 产品经理 | business / 产品经理高级模板 | 专业、商务感 |
-| AI 行业观察者 | minimal / 现代极简风 | 简洁、新闻感 |
-| AI 教程作者 | tech / 治愈系·暖色手账风 | 友好、教学感 |
+| 技术开发者 | tech | 代码高亮、技术感 |
+| AI 产品经理 | business | 专业、商务感 |
+| AI 行业观察者 | minimal | 简洁、新闻感 |
+| AI 教程作者 | tech | 友好、教学感 |
 
-### 可用模板
+**步骤 2.2**：执行转换命令
 
-**精美模板**（优先使用）：
-
-| 模板文件 | 风格特色 | 适用场景 |
-|----------|----------|----------|
-| VSCode 蓝色科技风.html | 导语块、序号章节、功能卡片 | 技术文章、产品介绍 |
-| 红蓝对决·深度测评模板.html | 渐变标题、对比卡片、数据表格 | 对比评测、深度分析 |
-| 极客暗黑风.html | 深色背景、极客风格 | 技术深度文章 |
-| 现代极简风.html | 简约清爽 | 通用文章 |
-| 产品经理高级模板.html | 专业商务 | 产品分析 |
-| 治愈系·暖色手账风.html | 温暖友好 | 教程、入门 |
-
-**基础主题**（备选）：
-
-| 主题 | 适用场景 | 配色 |
-|------|----------|------|
-| tech | 技术文章 | 蓝紫渐变 |
-| minimal | 通用内容 | 黑白灰 |
-| business | 商业报告 | 深蓝金 |
-
-## 转换流程
-
-### Step 1: 读取文章
-
-读取 Markdown 文章，分析内容特点：
-- 是否包含代码块
-- 是否包含表格
-- 是否包含图片
-- 文章长度
-
-### Step 2: 选择模板/主题
-
-根据写作角度和内容特点选择：
-
-```
-优先级：
-1. 精美模板（examples/ 目录）
-2. 基础主题（templates/ 目录）
-```
-
-### Step 3: 执行转换
-
-**使用精美模板**：
-
-1. 读取选中的模板文件
-2. 参照模板的组件结构
-3. **跳过 Markdown 中的 H1 标题**（微信有独立标题输入框）
-4. 手动将 Markdown 内容映射到模板组件
-5. 在 HTML 开头添加注释：`<!-- ⚠️ 标题请在微信公众号编辑器中单独填写 -->`
-
-**使用基础主题**：
+⚠️ **必须执行以下命令，不可自行编写转换逻辑**：
 
 ```bash
-cd /path/to/wechat-article-toolkit
-
-python scripts/markdown_to_html.py \
-  --input "article.md" \
-  --theme tech \
-  --output "article.html" \
-  --preview
+uv run -p 3.14 --no-project \
+  --with markdown \
+  --with beautifulsoup4 \
+  --with cssutils \
+  {PLUGIN_DIR}/scripts/markdown_to_html.py \
+  --input "{MARKDOWN_FILE}" \
+  --output "{OUTPUT_DIR}/{ARTICLE_NAME}.html" \
+  --theme {SELECTED_THEME}
 ```
 
-### Step 4: 代码块转换
+**完整示例**：
+```bash
+uv run -p 3.14 --no-project \
+  --with markdown \
+  --with beautifulsoup4 \
+  --with cssutils \
+  /path/to/wechat-article-toolkit/scripts/markdown_to_html.py \
+  --input "claude-code-guide.md" \
+  --output "output/claude-code-guide.html" \
+  --theme tech
+```
 
-**⚠️ 关键步骤**：将代码块转换为微信兼容格式
+### Phase 3: 代码块转换（条件执行）
+
+**触发条件**：文章包含代码块时执行
+
+**步骤 3.1**：执行代码块转换
+
+⚠️ **必须执行以下命令，不可自行编写转换逻辑**：
 
 ```bash
-python scripts/convert-code-blocks.py input.html output.html
+uv run -p 3.14 --no-project \
+  {PLUGIN_DIR}/scripts/convert-code-blocks.py \
+  "{INPUT_HTML}" "{OUTPUT_HTML}"
 ```
 
-这会将 `<pre><code>` 转换为 `<div>` + `<br>` + `&nbsp;` 格式。
+**完整示例**：
+```bash
+uv run -p 3.14 --no-project \
+  /path/to/wechat-article-toolkit/scripts/convert-code-blocks.py \
+  "output/claude-code-guide.html" "output/claude-code-guide_final.html"
+```
 
-### Step 5: 质量检查
+### Phase 4: 质量检查
 
-检查生成的 HTML：
-- [ ] 标题样式正确
-- [ ] 代码块有高亮
-- [ ] 图片路径正确
-- [ ] 表格格式正常
-- [ ] 整体排版美观
+**步骤 4.1**：使用 Read 工具读取生成的 HTML
+
+**步骤 4.2**：检查以下项目
+- [ ] HTML 结构完整（有 `<html>`, `<head>`, `<body>` 标签）
+- [ ] 样式已内联（style 属性或 `<style>` 标签）
+- [ ] 代码块格式正确（如有）
+- [ ] 图片路径正确（如有）
+- [ ] 中文显示正常
+
+### Phase 5: 输出结果
+
+**步骤 5.1**：报告转换结果
+
+```
+✅ 格式化完成
+
+输出文件：{OUTPUT_HTML_PATH}
+使用主题：{THEME}
+包含代码块：{YES/NO}
+
+📋 发布到微信公众号步骤：
+1. 打开微信公众号编辑器
+2. 在标题栏填写文章标题
+3. 打开生成的 HTML 文件
+4. 在浏览器中按 Ctrl+A（全选）→ Ctrl+C（复制）
+5. 粘贴到编辑器正文区（Ctrl+V）
+6. 处理图片：删除无法显示的本地图片，重新上传
+7. 使用「预览」功能在手机查看
+8. 确认无误后发布
+```
+
+---
 
 ## 格式规范
 
 ### 不渲染 H1 标题
 
-微信公众号有独立的标题输入框，HTML 中不应包含文章标题。
-
-```markdown
-# 这是标题（不渲染）
-
-## 第一章（从这里开始渲染）
-```
+微信公众号有独立的标题输入框，HTML 中不应包含文章标题。脚本会自动跳过 H1。
 
 ### 图片处理
 
@@ -139,40 +192,41 @@ python scripts/convert-code-blocks.py input.html output.html
 
 ### 链接处理
 
-微信公众号不支持外链，链接会被自动移除。
+微信公众号不支持外链，链接会被自动转换为文本形式。
 
-```html
-<!-- 原始 -->
-<a href="https://example.com">链接</a>
+---
 
-<!-- 转换后 -->
-链接（https://example.com）
-```
+## 错误处理
 
-## 输出规范
+### 常见错误及解决方案
 
-**文件名**：{文章名}.html 或 {文章名}_formatted.html
-**编码**：UTF-8
-**样式**：内联 CSS（微信不支持外部样式表）
+| 错误 | 原因 | 解决方案 |
+|------|------|----------|
+| `command not found: uv` | uv 未安装 | 提示用户安装 uv |
+| `No such file or directory` | 文件路径错误 | 检查文件路径 |
+| `Python 3.14 not found` | Python 版本不存在 | uv 会自动下载 |
+| 乱码 | 编码问题 | 确保文件为 UTF-8 编码 |
 
-## 发布指导
+### 错误处理流程
 
-转换完成后，提供发布指导：
+遇到错误时：
+1. 记录完整错误信息
+2. 检查命令参数是否正确
+3. 重试一次
+4. 如仍失败，向用户报告错误详情
 
-```
-📋 发布到微信公众号步骤：
+---
 
-1. 打开微信公众号编辑器
-2. ✅ 在标题栏填写文章标题
-3. 打开生成的 HTML 文件
-4. 在浏览器中按 Ctrl+A（全选）→ Ctrl+C（复制）
-5. 粘贴到编辑器正文区（Ctrl+V）
-6. 处理图片：删除无法显示的本地图片，重新上传
-7. 使用「预览」功能在手机查看
-8. 确认无误后发布
+## 禁止行为清单
 
-⚠️ 注意事项：
-- 样式已内联，可直接粘贴
-- 本地图片需重新上传
-- 粘贴后微信编辑器可能微调部分样式（正常）
-```
+❌ **以下行为严格禁止**：
+
+1. 编写 Python 脚本进行 Markdown 解析
+2. 使用 `python` 命令直接运行脚本
+3. 使用 `pip install` 安装任何包
+4. 创建 `.venv` 或其他虚拟环境
+5. 使用 Node.js/npm 相关工具
+6. 调用在线 API 进行格式转换
+7. 手动编写 HTML/CSS 样式代码
+8. 修改预定义脚本的源代码
+9. 省略 `--with` 参数中的任何依赖包
