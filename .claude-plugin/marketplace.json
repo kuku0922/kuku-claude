@@ -26,7 +26,7 @@
     {
       "name": "wechat-article-toolkit",
       "description": "多智能体协作的微信公众号文章写作工具集 (7 agents)，支持创作与仿写模式，涵盖调研、多角度写作（技术/产品/新闻/教程）、AI 图片生成（Gemini/即梦）等完整工作流。所有脚本通过 uv 临时包运行，无需本地安装依赖。",
-      "version": "6.0.0",
+      "version": "6.1.0",
       "source": "./wechat-article-toolkit"
     }
   ]

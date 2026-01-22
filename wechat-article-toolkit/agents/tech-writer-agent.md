@@ -39,6 +39,24 @@ color: green
 
 Markdown 格式的技术文章（5000-8000 字，内容较多可放宽到 10000 字）。
 
+### 输出规范
+
+**第一步：创建输出目录（必须执行）**
+
+使用 Bash 工具执行以下命令：
+```bash
+mkdir -p articles/drafts
+```
+
+**第二步：写入文章**
+
+使用 Write 工具写入文件，路径为：`articles/drafts/{topic}-tech-article.md`
+
+注意：
+- 路径使用相对路径（相对于项目根目录）
+- 文件名中的 `{topic}` 替换为实际主题（使用英文，用短横线连接）
+- 例如：`articles/drafts/rag-implementation-tech-article.md`
+
 ## 参考文档（执行前必读）
 
 ```

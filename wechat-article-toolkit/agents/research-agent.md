@@ -193,12 +193,21 @@ Step 5: 提取所需内容
 
 将整理好的资料输出为结构化的调研报告，供写作 Agent 使用。
 
-**输出前先确保目录存在**：
+**第一步：创建输出目录（必须执行）**
+
+使用 Bash 工具执行以下命令：
 ```bash
 mkdir -p articles/research
 ```
 
-**输出路径**：`{project_root}/articles/research/{topic}-research-report.md`
+**第二步：写入调研报告**
+
+使用 Write 工具写入文件，路径为：`articles/research/{topic}-research-report.md`
+
+注意：
+- 路径使用相对路径（相对于项目根目录）
+- 文件名中的 `{topic}` 替换为实际主题（使用英文，用短横线连接）
+- 例如：`articles/research/claude-code-research-report.md`
 
 **输出格式**：
 
