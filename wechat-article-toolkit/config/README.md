@@ -29,6 +29,11 @@ cp ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/sett
     "access_key_id": "火山引擎 Access Key ID",
     "secret_access_key": "火山引擎 Secret Access Key"
   },
+  "wechat": {
+    "appid": "微信公众号 AppID（wx开头18位）",
+    "appsecret": "微信公众号 AppSecret",
+    "base_url": "微信API地址（一般不需要修改）"
+  },
   "output": {
     "base_dir": "输出目录（默认 ./articles）",
     "images_dir": "图片子目录（默认 images）",

@@ -256,7 +256,12 @@ your-project/              # 项目根目录（自动识别）
 
 ## 🔗 后续步骤
 
-生成的 Markdown 文件可直接复制到微信公众号编辑器，或使用第三方工具（如 Mdnice、墨滴等）转换为公众号格式。
+写作完成后，可使用独立的 Skills 进行后续处理：
+
+- **MD 转 HTML**：使用 `/format-html` skill 将 Markdown 转换为微信公众号适配的 HTML
+- **发布到公众号**：使用 `/publish` skill 将文章发布到微信公众号草稿箱
+
+> 这些功能作为独立 Skills 实现，因为它们是单一动作，不需要多 Agent 协作。
 
 ## 🔗 相关项目
 
