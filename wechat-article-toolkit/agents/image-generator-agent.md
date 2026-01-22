@@ -2,7 +2,7 @@
 name: image-generator-agent
 description: 图片生成 Agent - 负责生成文章配图（封面图、结构图、概念图等），支持多种图片类型和风格
 model: opus
-allowed-tools: WebSearch, WebFetch, Read, Write, Bash, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
+tools: WebSearch, WebFetch, Read, Write, Bash
 color: cyan
 ---
 
@@ -721,42 +721,14 @@ Do NOT display any color codes (like #282c34), hex values, or RGB values in the 
 ```
 
 ### 问题 3：配色太"AI味"
-**解决**：
-- 避免使用 "gradient background" 这类描述
-- 使用 "solid color background" 替代
-- 选择本文档中定义的风格配色
-
-### 问题 3：API Key 未配置
-**解决**：
-1. 编辑 `.claude/config/settings.json` 配置 API 密钥
-
-**Gemini 配置**:
-```json
-{
-  "image_generation": {
-    "default_provider": "gemini"
-  },
-  "gemini": {
-    "api_key": "your-gemini-api-key",
-    "model": "gemini-3-pro-image-preview"
-  }
-}
-```
-或设置环境变量 `GEMINI_API_KEY`
-
-**即梦配置**:
-```json
-{
-  "image_generation": {
-    "default_provider": "jimeng"
-  },
-  "jimeng": {
-    "access_key_id": "your-access-key-id",
-    "secret_access_key": "your-secret-access-key"
-  }
-}
-```
-或设置环境变量 `VOLC_ACCESSKEY` 和 `VOLC_SECRETKEY`
+**原因**：使用模糊描述（如 "gradient background"）让 AI 自由发挥
+**解决**：必须使用本文档「设计风格库」中定义的具体配色方案
+- 极客暗黑风：#282c34, #c678dd, #61afef
+- 孟菲斯风：#ccff00, #000000, #b388ff
+- 治愈暖色风：#5d4037, #ffb7b2, #f57f17
+- 商务稳重风：#1e3a8a, #f59e0b, #333333
+- 极简黑白风：#000000, #333333, #ffffff
+- 科技蓝紫风：#7c3aed, #3b82f6, #1a1f5c
 
 ---
 

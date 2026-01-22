@@ -2,7 +2,7 @@
 name: publisher-agent
 description: 发布 Agent - 负责将 HTML 文章发布到微信公众号草稿箱
 model: opus
-allowed-tools: WebSearch, WebFetch, Read, Write, Bash, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
+tools: WebSearch, WebFetch, Read, Write, Bash
 color: red
 ---
 

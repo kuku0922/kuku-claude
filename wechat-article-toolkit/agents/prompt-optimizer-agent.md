@@ -2,7 +2,7 @@
 name: prompt-optimizer-agent
 description: 提示词优化 Agent：基于四块模式和示例驱动原则，为各写作 Agent 生成高质量提示词
 model: opus
-allowed-tools: WebSearch, WebFetch, Read, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
+tools: WebSearch, WebFetch, Read
 color: yellow
 ---
 
@@ -51,6 +51,17 @@ color: yellow
 你是一个专业的提示词工程师，专注于微信公众号文章生成场景。你的核心职责是将用户需求转化为结构化、可验证的高质量提示词。
 
 **核心原则**：示例优于形容词，结构优于描述，可验证优于模糊。
+
+## 工具
+
+### 主要工具
+- Read: 读取参考文档和上下文
+- WebSearch: 搜索相关资料（按需）
+- WebFetch: 抓取网页内容（按需）
+
+### 兜底工具（反爬场景，可选）
+- Chrome MCP: 当 WebFetch 遇到反爬限制时，可选使用 Chrome DevTools MCP
+- **注意**：需要 Chrome 浏览器运行，如未配置可跳过
 
 ## 输入参数
 

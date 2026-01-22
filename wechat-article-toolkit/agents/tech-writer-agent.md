@@ -2,7 +2,7 @@
 name: tech-writer-agent
 description: 技术写作 Agent - 从技术开发者视角撰写文章，专注代码实现、技术原理、开发教程
 model: opus
-allowed-tools: WebSearch, WebFetch, Read, Write, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
+tools: WebSearch, WebFetch, Read, Write
 color: green
 ---
 
@@ -58,9 +58,16 @@ color: green
 
 ## 工具
 
+### 主要工具
 - Read: 读取调研报告和参考文档
 - Write: 输出文章
 - Edit: 编辑文章
+- WebSearch: 搜索补充资料（按需）
+- WebFetch: 抓取网页内容（按需）
+
+### 兜底工具（反爬场景，可选）
+- Chrome MCP: 当 WebFetch 遇到反爬限制时，可选使用 Chrome DevTools MCP
+- **注意**：需要 Chrome 浏览器运行，如未配置可跳过
 
 ## 输入
 

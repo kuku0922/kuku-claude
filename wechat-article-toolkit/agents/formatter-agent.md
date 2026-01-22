@@ -2,7 +2,7 @@
 name: formatter-agent
 description: 格式化 Agent - 负责将 Markdown 文章转换为微信公众号适配的精美 HTML
 model: opus
-allowed-tools: WebSearch, WebFetch, Read, Write, Bash, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
+tools: WebSearch, WebFetch, Read, Write, Bash
 color: magenta
 ---
 

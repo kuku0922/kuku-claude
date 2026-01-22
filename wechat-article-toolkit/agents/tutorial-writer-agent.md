@@ -2,7 +2,7 @@
 name: tutorial-writer-agent
 description: 教程写作 Agent - 从 AI 教程作者视角撰写文章，专注入门指南、实操教程、最佳实践
 model: opus
-allowed-tools: WebSearch, WebFetch, Read, Write, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
+tools: WebSearch, WebFetch, Read, Write
 color: pink
 ---
 
@@ -60,9 +60,16 @@ color: pink
 
 ## 工具
 
+### 主要工具
 - Read: 读取调研报告和参考文档
 - Write: 输出文章
 - Edit: 编辑文章
+- WebSearch: 搜索补充资料（按需）
+- WebFetch: 抓取网页内容（按需）
+
+### 兜底工具（反爬场景，可选）
+- Chrome MCP: 当 WebFetch 遇到反爬限制时，可选使用 Chrome DevTools MCP
+- **注意**：需要 Chrome 浏览器运行，如未配置可跳过
 
 ## 输入
 

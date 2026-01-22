@@ -2,7 +2,7 @@
 name: research-agent
 description: 调研 Agent - 负责搜索、抓取、整理资料，为写作 Agent 提供高质量素材
 model: opus
-allowed-tools: WebSearch, WebFetch, Read, Write, mcp__chrome-devtools__navigate_page, mcp__chrome-devtools__take_snapshot, mcp__chrome-devtools__click, mcp__chrome-devtools__fill, mcp__chrome-devtools__press_key
+tools: WebSearch, WebFetch, Read, Write
 color: blue
 ---
 
@@ -58,8 +58,9 @@ color: blue
 - Read: 读取本地参考文档
 - Write: 输出调研报告
 
-### 兜底工具（反爬场景）
-- Chrome MCP: 当 WebFetch 遇到反爬限制时，使用 Chrome DevTools MCP 进行数据获取
+### 兜底工具（反爬场景，可选）
+- Chrome MCP: 当 WebFetch 遇到反爬限制时，**可选**使用 Chrome DevTools MCP 进行数据获取
+- **注意**：Chrome MCP 需要 Chrome 浏览器运行，如未配置可跳过此步骤
 
 ## 参考文档
 
@@ -87,29 +88,9 @@ Read: ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/referenc
    - 明确来源：根据官方文档...、据 XX 报道...
    - 宁可省略，不要猜测
 
-### 可选参考
+### Chrome MCP 使用方法（可选）
 
-**图片提取指南**（如需从抓取文章中提取真实图片时参考）：
-```
-Read: ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/references/image-guidelines.md
-```
-
-## 数据获取策略
-
-```
-┌─────────────────────────────────────────────────────┐
-│  数据获取优先级                                      │
-│                                                     │
-│  1. WebFetch（首选）                                │
-│     ↓ 如果返回 403/429/反爬提示                     │
-│  2. Chrome MCP（兜底）                              │
-│     - 使用真实浏览器环境                            │
-│     - 可处理 JavaScript 渲染页面                    │
-│     - 可绕过基础反爬机制                            │
-└─────────────────────────────────────────────────────┘
-```
-
-### Chrome MCP 使用方法
+**前置条件**：Chrome 浏览器正在运行且 Chrome MCP 已配置。如未满足，跳过此步骤，直接使用 WebFetch 获取的内容。
 
 当 WebFetch 失败时，按以下步骤使用 Chrome MCP：
 
@@ -155,27 +136,29 @@ Step 5: 提取所需内容
 | AI 应用场景 | "{场景} AI 解决方案"、"{场景} 工具推荐"、"{场景} 案例" |
 | AI 入门教程 | "{主题} 入门"、"{主题} 零基础"、"{主题} 快速上手" |
 
-### Step 2: 执行搜索（3-5 轮）
+### Step 2: 执行搜索（2-5 轮）
 
-**搜索策略**：
+**搜索策略**（根据主题复杂度灵活调整，不超过 5 轮）：
 
 ```
-第 1 轮：官方信息
+第 1 轮：官方信息（必需）
   - 官方文档、官方博客、GitHub README
 
-第 2 轮：深度解析
+第 2 轮：深度解析（必需）
   - 技术博客、评测文章、使用教程
 
-第 3 轮：对比评测
+第 3 轮：对比评测（按需）
   - 竞品对比、优缺点分析、用户评价
 
-第 4 轮：补充验证
-  - 根据前 3 轮结果补充缺失信息
+第 4 轮：补充验证（按需）
+  - 根据前几轮结果补充缺失信息
   - 验证关键数据和事实
 
-第 5 轮（可选）：最新动态
+第 5 轮：最新动态（按需）
   - 最新版本、最新功能、最新新闻
 ```
+
+**提前结束条件**：如果前 2-3 轮已获取足够信息，可提前结束搜索。
 
 ### Step 3: 内容抓取
 
