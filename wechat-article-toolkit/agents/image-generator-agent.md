@@ -109,11 +109,28 @@ color: cyan
 | 产品名称、品牌标识 | 保持原文 |
 | 国际化内容、英文教程 | 英文 |
 
+## 字体规范（MANDATORY FONTS）
+
+⚠️ **以下字体要求必须严格遵守**：
+
+| 文字类型 | 字体名称 | 来源 |
+|----------|----------|------|
+| 英文/数字/代码 | **Maple Mono** | https://github.com/subframe7536/maple-font |
+| 中文 | **LXGW WenKai（霞鹜文楷）** | https://github.com/lxgw/LxgwWenKai |
+
+**字体特点**：
+- **Maple Mono**：等宽编程字体，清晰易读，适合代码和技术内容
+- **LXGW WenKai**：开源中文楷体，优雅温润，适合正文和标题
+
 **提示词必须包含**：
 ```
 IMPORTANT: No garbled text, no color codes (like #xxx), no technical parameters visible in the image.
 All text must be clear and readable.
 Keep text language consistent within the image.
+
+MANDATORY FONTS:
+- English/Numbers/Code: Use "Maple Mono" font (monospace, clean, developer-friendly)
+- Chinese text: Use "LXGW WenKai" font (elegant Chinese kai style, open source)
 ```
 
 ---
@@ -363,6 +380,11 @@ Visual accents:
 
 Style: code editor aesthetic, dark mode, professional yet geeky.
 Text must be clear and readable. No garbled characters, no color codes.
+
+MANDATORY FONTS:
+- English/Numbers/Code: Use "Maple Mono" font (monospace, clean, developer-friendly)
+- Chinese text: Use "LXGW WenKai" font (elegant Chinese kai style)
+
 16:9 aspect ratio.
 ```
 
@@ -387,6 +409,11 @@ Visual elements:
 
 Style: Memphis design, 80s/90s revival, bold and playful.
 Text must be clear and readable. No garbled characters, no color codes.
+
+MANDATORY FONTS:
+- English/Numbers/Code: Use "Maple Mono" font (monospace, clean, developer-friendly)
+- Chinese text: Use "LXGW WenKai" font (elegant Chinese kai style)
+
 16:9 aspect ratio.
 ```
 
@@ -411,6 +438,11 @@ Visual elements:
 
 Style: journal/notebook aesthetic, approachable, cozy.
 Text must be clear and readable. No garbled characters, no color codes.
+
+MANDATORY FONTS:
+- English/Numbers/Code: Use "Maple Mono" font (monospace, clean, developer-friendly)
+- Chinese text: Use "LXGW WenKai" font (elegant Chinese kai style)
+
 16:9 aspect ratio.
 ```
 
@@ -435,6 +467,11 @@ Visual elements:
 
 Style: corporate, trustworthy, data-driven.
 Text must be clear and readable. No garbled characters, no color codes.
+
+MANDATORY FONTS:
+- English/Numbers/Code: Use "Maple Mono" font (monospace, clean, developer-friendly)
+- Chinese text: Use "LXGW WenKai" font (elegant Chinese kai style)
+
 16:9 aspect ratio.
 ```
 
@@ -476,6 +513,11 @@ Layout:
 
 Style: infographic, educational, easy to scan.
 Text must be clear and readable. No garbled characters, no color codes.
+
+MANDATORY FONTS:
+- English/Numbers/Code: Use "Maple Mono" font (monospace, clean, developer-friendly)
+- Chinese text: Use "LXGW WenKai" font (elegant Chinese kai style)
+
 16:9 aspect ratio.
 ```
 
@@ -512,6 +554,11 @@ Key differences (optional, below main visual):
 
 Style: clean, infographic, easy to understand at a glance.
 Text must be clear and readable. No garbled characters, no color codes.
+
+MANDATORY FONTS:
+- English/Numbers/Code: Use "Maple Mono" font (monospace, clean, developer-friendly)
+- Chinese text: Use "LXGW WenKai" font (elegant Chinese kai style)
+
 16:9 aspect ratio.
 ```
 
@@ -536,6 +583,11 @@ Design:
 
 Style: minimal, professional data visualization.
 Text must be clear and readable. No garbled characters, no color codes.
+
+MANDATORY FONTS:
+- English/Numbers/Code: Use "Maple Mono" font (monospace, clean, developer-friendly)
+- Chinese text: Use "LXGW WenKai" font (elegant Chinese kai style)
+
 16:9 aspect ratio.
 ```
 
@@ -571,6 +623,11 @@ Visual design:
 Style: flat design, clean lines, professional diagram.
 Avoid 3D effects or heavy shadows.
 Text must be clear and readable. No garbled characters, no color codes.
+
+MANDATORY FONTS:
+- English/Numbers/Code: Use "Maple Mono" font (monospace, clean, developer-friendly)
+- Chinese text: Use "LXGW WenKai" font (elegant Chinese kai style)
+
 16:9 or 4:3 aspect ratio.
 ```
 
@@ -603,6 +660,11 @@ Visual design:
 
 Style: process diagram, clear and sequential.
 Text must be clear and readable. No garbled characters, no color codes.
+
+MANDATORY FONTS:
+- English/Numbers/Code: Use "Maple Mono" font (monospace, clean, developer-friendly)
+- Chinese text: Use "LXGW WenKai" font (elegant Chinese kai style)
+
 16:9 aspect ratio.
 ```
 

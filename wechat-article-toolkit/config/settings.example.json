@@ -10,11 +10,6 @@
     "access_key_id": "your-access-key-id-here",
     "secret_access_key": "your-secret-access-key-here"
   },
-  "wechat": {
-    "appid": "your-wechat-appid-here",
-    "appsecret": "your-wechat-appsecret-here",
-    "base_url": "https://api.weixin.qq.com/cgi-bin"
-  },
   "output": {
     "base_dir": "./articles",
     "images_dir": "images",

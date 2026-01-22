@@ -4,13 +4,10 @@
 
 ## ✨ 特性
 
-- 🤖 **多智能体协作**：10 个专业 Agent 分工协作
+- 🤖 **多智能体协作**：7 个专业 Agent 分工协作
 - 🎯 **提示词优化**：基于四块模式自动优化各 Agent 提示词
 - 📝 **多种写作角度**：技术开发者、AI 产品经理、行业观察者、教程作者
-- 🎨 **自动生成图片**：封面图 + 内容结构图（支持 Google Gemini Nano Banana Pro 和火山引擎即梦 AI）
-- 📄 **精美排版**：10+ 套专业 HTML 模板
-- 🚀 **灵活发布**：写作与发布解耦，支持独立发布命令
-- 🔄 **反爬兜底**：Chrome MCP 自动处理反爬场景
+- 🎨 **自动生成图片**：封面图 + 内容结构图（支持 Google Gemini 和火山引擎即梦 AI）
 
 ## 📂 目录结构
 
@@ -18,25 +15,18 @@
 wechat-article-toolkit/
 ├── .claude-plugin/
 │   └── plugin.json              # 插件配置
-├── agents/                      # 9 个专业 Agent
+├── agents/                      # 7 个专业 Agent
 │   ├── prompt-optimizer-agent.md # 提示词优化 Agent
 │   ├── research-agent.md        # 调研 Agent
 │   ├── tech-writer-agent.md     # 技术写作 Agent
 │   ├── pm-writer-agent.md       # 产品经理写作 Agent
 │   ├── ai-news-writer-agent.md  # 新闻写作 Agent
 │   ├── tutorial-writer-agent.md # 教程写作 Agent
-│   ├── image-generator-agent.md # 图片生成 Agent（封面图、结构图等）
-│   ├── formatter-agent.md       # 格式化 Agent
-│   └── publisher-agent.md       # 发布 Agent
+│   └── image-generator-agent.md # 图片生成 Agent（封面图、结构图等）
 ├── commands/
 │   └── write-article.md         # 主入口 Skill
 ├── scripts/                     # 共享脚本
-│   ├── generate_image.py        # 图片生成
-│   ├── markdown_to_html.py      # Markdown 转 HTML
-│   ├── convert-code-blocks.py   # 代码块转换
-│   └── publisher.py             # 微信发布
-├── templates/                   # CSS 主题模板
-├── examples/                    # HTML 示例模板
+│   └── generate_image.py        # 图片生成
 ├── references/                  # 参考文档
 └── README.md
 ```
@@ -49,20 +39,9 @@ wechat-article-toolkit/
 # 启动 Claude Code
 claude
 
-# 写作（默认不发布）
+# 写作
 /wechat-article-toolkit:write-article
-
-# 单独发布（写作完成后）
-/wechat-article-toolkit:publish
 ```
-
-### 命令说明
-
-| 命令 | 说明 |
-|------|------|
-| `/write-article` | 多智能体协作写作，支持创作和仿写两种模式 |
-| `/format-html` | 将 Markdown 转换为精美 HTML（可单独调用） |
-| `/publish` | 将已生成的文章发布到微信公众号草稿箱 |
 
 ### 创作模式示例
 
@@ -76,18 +55,6 @@ claude
 ```
 帮我仿写这篇文章 https://mp.weixin.qq.com/s/xxxxx，
 模仿它的风格写一篇关于 Cursor 的教程
-```
-
-写作完成后，如需发布：
-```
-/wechat-article-toolkit:publish
-```
-
-### 单独格式化 HTML
-
-修改 Markdown 后重新生成 HTML：
-```
-/wechat-article-toolkit:format-html
 ```
 
 ## 📋 写作模式
@@ -146,24 +113,9 @@ claude
 | 🌐 翻译+本土化 | 翻译外文文章并本土化适配 |
 | 📈 扩展/深化 | 在参考文章基础上扩展或深入分析 |
 
-### HTML 模板风格（通用）
-
-| 模板 | 适用场景 |
-|------|----------|
-| 🖥️ 极客暗黑风 | 技术文章、代码教程 |
-| 💙 VSCode 蓝色科技风 | 开发工具介绍 |
-| 🌙 终端极客·暗夜测评风 | 技术评测 |
-| 📊 产品经理高级模板 | 产品分析 |
-| 🏆 高端商务·黑金咨询风 | 行业报告 |
-| ⚔️ 红蓝对决·深度测评模板 | 对比评测 |
-| ✨ 未来科技·弥散光感风 | AI/科技前沿 |
-| 📝 现代极简风 | 通用文章 |
-| 🎨 新潮杂志·孟菲斯风 | 新闻资讯 |
-| 🌸 治愈系·暖色手账风 | 入门教程 |
-
 ## 🤖 Agent 架构
 
-### 多智能体协作流程（完全串行）
+### 多智能体协作流程
 
 ```
 用户请求
@@ -192,18 +144,12 @@ write-article.md (主协调器)
 └───────────────────────────────────────────────────┘
     ↓
 ┌───────────────────────────────────────────────────┐
-│  Step 4-N: 串行生成图片（使用即梦 AI）            │
+│  Step 4-N: 串行生成图片                           │
 │  每张图片生成前都调用 prompt-optimizer            │
 │  按需求列表逐张生成，总数不超过 6 张              │
 └───────────────────────────────────────────────────┘
-    ↓ (等待完成)
-┌───────────────────────────────────────────────────┐
-│  Step N+1: 格式化阶段                              │
-│  - formatter-agent                                │
-│  - publisher-agent (可选)                         │
-└───────────────────────────────────────────────────┘
     ↓
-输出结果
+输出 Markdown 文件
 ```
 
 ### 即时提示词优化机制
@@ -228,8 +174,6 @@ write-article.md (主协调器)
 | ai-news-writer-agent | AI 行业观察者视角写作 | opus |
 | tutorial-writer-agent | AI 教程作者视角写作 | opus |
 | image-generator-agent | 生成文章配图（封面图、结构图等） | opus |
-| formatter-agent | Markdown 转 HTML | opus |
-| publisher-agent | 发布到微信草稿箱 | opus |
 
 ## ⚙️ 配置
 
@@ -255,11 +199,6 @@ cp ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/sett
     "access_key_id": "your-access-key-id-here",
     "secret_access_key": "your-secret-access-key-here"
   },
-  "wechat": {
-    "appid": "your-wechat-appid-here",
-    "appsecret": "your-wechat-appsecret-here",
-    "base_url": "https://api.weixin.qq.com/cgi-bin"
-  },
   "output": {
     "base_dir": "./articles",
     "images_dir": "images",
@@ -274,11 +213,9 @@ cp ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/sett
 |--------|------|----------|
 | `image_generation.default_provider` | 默认图片生成提供商 | gemini（推荐）或 jimeng |
 | `gemini.api_key` | Google Gemini API Key | [Google AI Studio](https://aistudio.google.com/apikey) |
-| `gemini.model` | Gemini 图片生成模型 | gemini-3-pro-image-preview (Nano Banana Pro，支持 4K) 或 gemini-2.5-flash-image (Nano Banana，速度优化) |
+| `gemini.model` | Gemini 图片生成模型 | gemini-3-pro-image-preview (支持 4K) 或 gemini-2.5-flash-image (速度优化) |
 | `jimeng.access_key_id` | 火山引擎 Access Key ID | [火山引擎控制台](https://console.volcengine.com/) → 访问控制 → 访问密钥 |
 | `jimeng.secret_access_key` | 火山引擎 Secret Access Key | 同上 |
-| `wechat.appid` | 微信公众号 AppID | 微信公众平台 → 设置与开发 → 基本配置 |
-| `wechat.appsecret` | 微信公众号 AppSecret | 微信公众平台 → 设置与开发 → 基本配置 |
 
 ### 图片防覆盖
 
@@ -307,7 +244,6 @@ cp ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/sett
 your-project/              # 项目根目录（自动识别）
 └── articles/              # 文章输出目录
     ├── {topic}.md         # Markdown 文件
-    ├── {topic}.html       # HTML 文件
     ├── images/            # 图片目录
     │   ├── {topic}-cover.png
     │   ├── {topic}-structure.png
@@ -317,6 +253,10 @@ your-project/              # 项目根目录（自动识别）
 ```
 
 > `./articles` 是相对路径，自动相对于你运行 Claude Code 时的当前目录（项目根目录）。
+
+## 🔗 后续步骤
+
+生成的 Markdown 文件可直接复制到微信公众号编辑器，或使用第三方工具（如 Mdnice、墨滴等）转换为公众号格式。
 
 ## 🔗 相关项目
 
