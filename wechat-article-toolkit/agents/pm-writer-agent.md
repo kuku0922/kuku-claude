@@ -2,7 +2,7 @@
 name: pm-writer-agent
 description: 产品经理写作 Agent - 从 AI 产品经理视角撰写文章，专注产品拆解、场景方案、效率提升
 model: opus
-tools: WebSearch, WebFetch, Read, Write
+tools: WebSearch, WebFetch, Read, Write, Bash
 color: purple
 ---
 

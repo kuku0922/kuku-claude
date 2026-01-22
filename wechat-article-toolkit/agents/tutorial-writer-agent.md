@@ -2,7 +2,7 @@
 name: tutorial-writer-agent
 description: 教程写作 Agent - 从 AI 教程作者视角撰写文章，专注入门指南、实操教程、最佳实践
 model: opus
-tools: WebSearch, WebFetch, Read, Write
+tools: WebSearch, WebFetch, Read, Write, Bash
 color: pink
 ---
 

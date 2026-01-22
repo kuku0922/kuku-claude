@@ -2,7 +2,7 @@
 name: tech-writer-agent
 description: 技术写作 Agent - 从技术开发者视角撰写文章，专注代码实现、技术原理、开发教程
 model: opus
-tools: WebSearch, WebFetch, Read, Write
+tools: WebSearch, WebFetch, Read, Write, Bash
 color: green
 ---
 

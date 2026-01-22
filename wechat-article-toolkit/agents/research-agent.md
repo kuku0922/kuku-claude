@@ -2,7 +2,7 @@
 name: research-agent
 description: 调研 Agent - 负责搜索、抓取、整理资料，为写作 Agent 提供高质量素材
 model: opus
-tools: WebSearch, WebFetch, Read, Write
+tools: WebSearch, WebFetch, Read, Write, Bash
 color: blue
 ---
 
@@ -230,6 +230,11 @@ Step 5: 提取所需内容
 ### Step 5: 输出调研报告
 
 将整理好的资料输出为结构化的调研报告，供写作 Agent 使用。
+
+**输出前先确保目录存在**：
+```bash
+mkdir -p articles/research
+```
 
 **输出路径**：`{project_root}/articles/research/{topic}-research-report.md`
 

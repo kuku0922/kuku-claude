@@ -2,7 +2,7 @@
 name: ai-news-writer-agent
 description: AI 新闻写作 Agent - 从 AI 行业观察者视角撰写文章，专注新闻解读、趋势分析、观点评论
 model: opus
-tools: WebSearch, WebFetch, Read, Write
+tools: WebSearch, WebFetch, Read, Write, Bash
 color: orange
 ---
 
