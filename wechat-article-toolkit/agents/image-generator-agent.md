@@ -125,7 +125,7 @@ Keep text language consistent within the image.
 ### 1. 封面图生成指南
 
 ```
-Read: ${CLAUDE_PLUGIN_ROOT}/references/cover-image-guide.md
+Read: ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/references/cover-image-guide.md
 ```
 
 **包含内容**：
@@ -137,7 +137,7 @@ Read: ${CLAUDE_PLUGIN_ROOT}/references/cover-image-guide.md
 ### 2. 内容配图指南
 
 ```
-Read: ${CLAUDE_PLUGIN_ROOT}/references/content-images-guide.md
+Read: ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/references/content-images-guide.md
 ```
 
 **包含内容**：
@@ -149,7 +149,7 @@ Read: ${CLAUDE_PLUGIN_ROOT}/references/content-images-guide.md
 ### 3. AI 图片生成详细指南（可选参考）
 
 ```
-Read: ${CLAUDE_PLUGIN_ROOT}/references/ai-image-generation.md
+Read: ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/references/ai-image-generation.md
 ```
 
 **包含内容**：
@@ -182,7 +182,7 @@ Step 3: 构建提示词并执行生成
 ```bash
 uv run -p 3.14 --no-project \
   --with requests --with google-genai --with pillow \
-  ${CLAUDE_PLUGIN_ROOT}/scripts/generate_image.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py \
   --prompt "{PROMPT}" \
   --output "{OUTPUT_PATH}" \
   --aspect-ratio "{ASPECT_RATIO}" \
@@ -612,7 +612,7 @@ Text must be clear and readable. No garbled characters, no color codes.
 
 ### Phase 1: 分析输入
 
-**步骤 1.1**：插件目录已通过 `${CLAUDE_PLUGIN_ROOT}` 环境变量自动获取
+**步骤 1.1**：插件目录位于 `~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit`
 
 **步骤 1.2**：解析图片请求
 - `image_type`: cover / structure / comparison / architecture / workflow / custom
@@ -646,7 +646,7 @@ Text must be clear and readable. No garbled characters, no color codes.
 ```bash
 uv run -p 3.14 --no-project \
   --with requests --with google-genai --with pillow \
-  ${CLAUDE_PLUGIN_ROOT}/scripts/generate_image.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py \
   --prompt "{CONSTRUCTED_PROMPT}" \
   --output "{OUTPUT_PATH}" \
   --aspect-ratio "{ASPECT_RATIO}"

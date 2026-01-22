@@ -362,8 +362,8 @@ Square aspect ratio (1:1), high quality.
 
 ```bash
 uv run -p 3.14 --no-project \
-  --with requests \
-  scripts/generate_image.py \
+  --with requests --with google-genai --with pillow \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py \
   --prompt "你构建的完整提示词" \
   --output "输出路径/{主题}_comparison.png"
 ```

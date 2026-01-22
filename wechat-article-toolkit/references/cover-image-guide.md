@@ -339,8 +339,8 @@ All Chinese characters must be clear and correct.
 
 ```bash
 uv run -p 3.14 --no-project \
-  --with requests \
-  scripts/generate_image.py \
+  --with requests --with google-genai --with pillow \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py \
   --prompt "你构建的完整提示词" \
   --output "输出路径/{topic}_cover.png"
 ```
@@ -352,7 +352,7 @@ uv run -p 3.14 --no-project \
 ```
 
 **错误处理**：
-- API 密钥未配置 → 检查 config/settings.json 或环境变量
+- API 密钥未配置 → 检查 .claude/config/settings.json 或环境变量
 - 生成失败 → 简化提示词，减少复杂要求
 - 中文乱码 → 强化提示词中的中文要求
 

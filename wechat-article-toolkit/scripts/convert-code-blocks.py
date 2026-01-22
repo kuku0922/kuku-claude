@@ -10,7 +10,7 @@
 - 无需创建虚拟环境，无需安装依赖
 
 使用方法:
-    uv run -p 3.14 --no-project scripts/convert-code-blocks.py input.html output.html
+    uv run -p 3.14 --no-project ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/convert-code-blocks.py input.html output.html
 """
 
 import re

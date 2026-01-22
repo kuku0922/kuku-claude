@@ -10,9 +10,9 @@ Markdown to HTML Converter for WeChat Public Accounts
 - 无需创建虚拟环境，无需安装依赖
 
 使用方法:
-    uv run -p 3.14 --no-project --with markdown --with beautifulsoup4 --with cssutils scripts/markdown_to_html.py --input article.md --output article.html
-    uv run -p 3.14 --no-project --with markdown --with beautifulsoup4 --with cssutils scripts/markdown_to_html.py --input article.md --theme minimal
-    uv run -p 3.14 --no-project --with markdown --with beautifulsoup4 --with cssutils scripts/markdown_to_html.py --input article.md --preview
+    uv run -p 3.14 --no-project --with markdown --with beautifulsoup4 --with cssutils ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/markdown_to_html.py --input article.md --output article.html
+    uv run -p 3.14 --no-project --with markdown --with beautifulsoup4 --with cssutils ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/markdown_to_html.py --input article.md --theme minimal
+    uv run -p 3.14 --no-project --with markdown --with beautifulsoup4 --with cssutils ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/markdown_to_html.py --input article.md --preview
 """
 
 import argparse

@@ -152,7 +152,7 @@ Task(
     - 输入文件：{markdown_path}
     - 输出目录：{output_dir}
     - 主题：{theme}
-    - 参考示例：${CLAUDE_PLUGIN_ROOT}/examples/{template_file}
+    - 参考示例：~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/examples/{template_file}
   ",
   model: "opus"
 )
@@ -161,12 +161,12 @@ Task(
 **或者直接执行命令**（更快）：
 
 ```bash
-# 执行转换（${CLAUDE_PLUGIN_ROOT} 会自动替换为插件路径）
+# 执行转换
 uv run -p 3.14 --no-project \
   --with markdown \
   --with beautifulsoup4 \
   --with cssutils \
-  ${CLAUDE_PLUGIN_ROOT}/scripts/markdown_to_html.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/markdown_to_html.py \
   --input "{MARKDOWN_FILE}" \
   --output "{OUTPUT_DIR}/{ARTICLE_NAME}.html" \
   --theme {THEME}
@@ -178,7 +178,7 @@ uv run -p 3.14 --no-project \
 
 ```bash
 uv run -p 3.14 --no-project \
-  ${CLAUDE_PLUGIN_ROOT}/scripts/convert-code-blocks.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/convert-code-blocks.py \
   "{INPUT_HTML}" "{OUTPUT_HTML}"
 ```
 

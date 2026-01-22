@@ -1,0 +1,17 @@
+{
+  "description": "微信公众号文章工具集 - 会话启动时设置插件路径环境变量",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"export WECHAT_TOOLKIT_PATH=${CLAUDE_PLUGIN_ROOT}\" >> \"$CLAUDE_ENV_FILE\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

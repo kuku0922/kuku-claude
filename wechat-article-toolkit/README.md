@@ -233,13 +233,14 @@ write-article.md (主协调器)
 
 ## ⚙️ 配置
 
-所有配置统一放在 `config/settings.json`（首次使用需从 `settings.example.json` 复制）：
+所有配置统一放在 `.claude/config/settings.json`（首次使用需从 `settings.example.json` 复制）：
 
 ```bash
-cp config/settings.example.json config/settings.json
+mkdir -p .claude/config
+cp ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/settings.example.json .claude/config/settings.json
 ```
 
-然后编辑 `config/settings.json`，填入你的 API 密钥：
+然后编辑 `.claude/config/settings.json`，填入你的 API 密钥：
 
 ```json
 {

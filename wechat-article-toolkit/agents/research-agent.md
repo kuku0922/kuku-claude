@@ -66,7 +66,7 @@ color: blue
 ### 必读文档
 
 ```
-Read: ${CLAUDE_PLUGIN_ROOT}/references/fact-checking.md
+Read: ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/references/fact-checking.md
 ```
 
 **事实核查核心原则**：
@@ -91,7 +91,7 @@ Read: ${CLAUDE_PLUGIN_ROOT}/references/fact-checking.md
 
 **图片提取指南**（如需从抓取文章中提取真实图片时参考）：
 ```
-Read: ${CLAUDE_PLUGIN_ROOT}/references/image-guidelines.md
+Read: ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/references/image-guidelines.md
 ```
 
 ## 数据获取策略

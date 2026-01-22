@@ -73,7 +73,7 @@ Markdown 格式的技术文章（5000-8000 字，内容较多可放宽到 10000 
 ## 参考文档（执行前必读）
 
 ```
-Read: ${CLAUDE_PLUGIN_ROOT}/references/writing-style.md
+Read: ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/references/writing-style.md
 ```
 
 **必须遵守的核心规范**：

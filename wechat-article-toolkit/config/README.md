@@ -10,7 +10,7 @@
 
 ```bash
 mkdir -p .claude/config
-cp /path/to/wechat-article-toolkit/config/settings.example.json .claude/config/settings.json
+cp ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/settings.example.json .claude/config/settings.json
 # 编辑 .claude/config/settings.json 填入你的配置
 ```
 

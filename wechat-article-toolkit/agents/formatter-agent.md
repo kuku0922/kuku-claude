@@ -82,7 +82,7 @@ color: magenta
 
 ### HTML 样式示例库
 
-`${CLAUDE_PLUGIN_ROOT}/examples/` 目录下有 10 个精美的 HTML 样式示例：
+`~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/examples/` 目录下有 10 个精美的 HTML 样式示例：
 
 | 示例文件 | 适用场景 |
 |----------|----------|
@@ -98,7 +98,7 @@ color: magenta
 | 治愈系·暖色手账风.html | 入门教程、生活方式 |
 
 **使用方式**：
-- 如需参考特定风格，使用 `Read: ${CLAUDE_PLUGIN_ROOT}/examples/{示例文件}` 查看 HTML 结构
+- 如需参考特定风格，使用 `Read: ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/examples/{示例文件}` 查看 HTML 结构
 - 当前脚本支持 3 种主题（tech, minimal, business），如需更多风格可参考示例自定义
 
 ## 可用脚本及命令
@@ -113,7 +113,7 @@ uv run -p 3.14 --no-project \
   --with markdown \
   --with beautifulsoup4 \
   --with cssutils \
-  ${CLAUDE_PLUGIN_ROOT}/scripts/markdown_to_html.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/markdown_to_html.py \
   --input "{INPUT_MD}" \
   --output "{OUTPUT_HTML}" \
   --theme {THEME}
@@ -137,7 +137,7 @@ uv run -p 3.14 --no-project \
 **完整命令（必须使用）**：
 ```bash
 uv run -p 3.14 --no-project \
-  ${CLAUDE_PLUGIN_ROOT}/scripts/convert-code-blocks.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/convert-code-blocks.py \
   "{INPUT_HTML}" "{OUTPUT_HTML}"
 ```
 
@@ -155,7 +155,7 @@ uv run -p 3.14 --no-project \
 
 ### Phase 1: 环境准备
 
-**步骤 1.1**：插件目录已通过 `${CLAUDE_PLUGIN_ROOT}` 环境变量自动获取
+**步骤 1.1**：插件目录位于 `~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit`
 
 **步骤 1.2**：确认输入文件
 - 使用 Read 工具读取 Markdown 文件
@@ -185,7 +185,7 @@ uv run -p 3.14 --no-project \
   --with markdown \
   --with beautifulsoup4 \
   --with cssutils \
-  ${CLAUDE_PLUGIN_ROOT}/scripts/markdown_to_html.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/markdown_to_html.py \
   --input "{MARKDOWN_FILE}" \
   --output "{OUTPUT_DIR}/{ARTICLE_NAME}.html" \
   --theme {SELECTED_THEME}
@@ -197,7 +197,7 @@ uv run -p 3.14 --no-project \
   --with markdown \
   --with beautifulsoup4 \
   --with cssutils \
-  /path/to/wechat-article-toolkit/scripts/markdown_to_html.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/markdown_to_html.py \
   --input "articles/claude-code-guide.md" \
   --output "articles/claude-code-guide.html" \
   --theme tech
@@ -213,14 +213,14 @@ uv run -p 3.14 --no-project \
 
 ```bash
 uv run -p 3.14 --no-project \
-  ${CLAUDE_PLUGIN_ROOT}/scripts/convert-code-blocks.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/convert-code-blocks.py \
   "{INPUT_HTML}" "{OUTPUT_HTML}"
 ```
 
 **完整示例**：
 ```bash
 uv run -p 3.14 --no-project \
-  /path/to/wechat-article-toolkit/scripts/convert-code-blocks.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/convert-code-blocks.py \
   "articles/claude-code-guide.html" "articles/claude-code-guide-final.html"
 ```
 

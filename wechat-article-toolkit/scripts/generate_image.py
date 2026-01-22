@@ -13,9 +13,9 @@
 - 无需创建虚拟环境，无需安装依赖
 
 使用方法:
-    uv run -p 3.14 --no-project --with requests --with google-genai --with pillow scripts/generate_image.py --prompt "图片描述" --output output.png
-    uv run -p 3.14 --no-project --with requests --with google-genai --with pillow scripts/generate_image.py --prompt "图片描述" --output output.png --provider jimeng
-    uv run -p 3.14 --no-project --with requests --with google-genai --with pillow scripts/generate_image.py --prompt "图片描述" --output output.png --image-size 4K
+    uv run -p 3.14 --no-project --with requests --with google-genai --with pillow ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py --prompt "图片描述" --output output.png
+    uv run -p 3.14 --no-project --with requests --with google-genai --with pillow ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py --prompt "图片描述" --output output.png --provider jimeng
+    uv run -p 3.14 --no-project --with requests --with google-genai --with pillow ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py --prompt "图片描述" --output output.png --image-size 4K
 """
 
 import os

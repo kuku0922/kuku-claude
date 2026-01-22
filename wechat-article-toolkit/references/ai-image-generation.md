@@ -50,12 +50,12 @@ AI生成图片可以有效补充技术文章的视觉内容，特别适合创建
 
 ### 基本用法
 
-使用 `scripts/generate_image.py` 脚本调用图片生成 API：
+使用 `~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py` 脚本调用图片生成 API：
 
 ```bash
 uv run -p 3.14 --no-project \
   --with requests --with google-genai --with pillow \
-  scripts/generate_image.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py \
   --prompt "图片描述提示词" \
   --output "./output/images/{主题}_cover.png" \
   --provider "gemini"
@@ -65,7 +65,7 @@ uv run -p 3.14 --no-project \
 
 **Gemini 配置（推荐）**：
 
-编辑 `config/settings.json`：
+编辑 `.claude/config/settings.json`：
 ```json
 {
   "image_generation": {
@@ -258,22 +258,22 @@ All text in simplified Chinese, clear and readable.
 ```bash
 # 1. 生成封面图
 uv run -p 3.14 --no-project \
-  --with requests \
-  scripts/generate_image.py \
+  --with requests --with google-genai --with pillow \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py \
   --prompt "A cover image for WeChat article about Claude Code. Blue-purple gradient background..." \
   --output "./output/images/claude_code_cover.png"
 
 # 2. 生成结构图（如需要）
 uv run -p 3.14 --no-project \
-  --with requests \
-  scripts/generate_image.py \
+  --with requests --with google-genai --with pillow \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py \
   --prompt "A content structure infographic for Claude Code tutorial..." \
   --output "./output/images/claude_code_structure.png"
 
 # 3. 生成其他配图（如需要）
 uv run -p 3.14 --no-project \
-  --with requests \
-  scripts/generate_image.py \
+  --with requests --with google-genai --with pillow \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/generate_image.py \
   --prompt "A comparison image showing traditional coding vs AI-assisted coding..." \
   --output "./output/images/claude_code_image_1.png"
 ```

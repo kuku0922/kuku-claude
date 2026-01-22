@@ -89,7 +89,7 @@ color: red
 ```bash
 uv run -p 3.14 --no-project \
   --with requests \
-  ${CLAUDE_PLUGIN_ROOT}/scripts/publisher.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/publisher.py \
   --title "{ARTICLE_TITLE}" \
   --content "{HTML_FILE}" \
   --cover "{COVER_IMAGE}" \
@@ -143,13 +143,13 @@ uv run -p 3.14 --no-project \
 
 ### Phase 1: 检查配置
 
-**步骤 1.1**：插件目录已通过 `${CLAUDE_PLUGIN_ROOT}` 环境变量自动获取
+**步骤 1.1**：插件目录位于 `~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit`
 
 **步骤 1.2**：检查配置文件
 
 使用 Read 工具检查配置文件是否存在：
 1. 先检查 `{项目目录}/.claude/config/settings.json`
-2. 若不存在，检查 `${CLAUDE_PLUGIN_ROOT}/config/settings.json`
+2. 若不存在，检查 `~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/settings.json`
 
 **步骤 1.3**：验证配置内容
 
@@ -163,11 +163,11 @@ uv run -p 3.14 --no-project \
 
 方式一（推荐）- 项目级配置：
   mkdir -p .claude/config
-  cp ${CLAUDE_PLUGIN_ROOT}/config/settings.example.json .claude/config/settings.json
+  cp ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/settings.example.json .claude/config/settings.json
   # 编辑 .claude/config/settings.json 填入你的 AppID 和 AppSecret
 
 方式二 - 插件级配置：
-  cp ${CLAUDE_PLUGIN_ROOT}/config/settings.example.json ${CLAUDE_PLUGIN_ROOT}/config/settings.json
+  cp ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/settings.example.json ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/settings.json
   # 编辑配置文件
 
 获取凭证：
@@ -209,7 +209,7 @@ uv run -p 3.14 --no-project \
 ```bash
 uv run -p 3.14 --no-project \
   --with requests \
-  ${CLAUDE_PLUGIN_ROOT}/scripts/publisher.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/publisher.py \
   --title "{ARTICLE_TITLE}" \
   --content "{HTML_FILE}" \
   --cover "{COVER_IMAGE}" \
@@ -220,7 +220,7 @@ uv run -p 3.14 --no-project \
 ```bash
 uv run -p 3.14 --no-project \
   --with requests \
-  /path/to/wechat-article-toolkit/scripts/publisher.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/publisher.py \
   --title "Claude Code 零基础入门指南" \
   --content "output/claude-code-guide.html" \
   --cover "cover.png" \
@@ -231,7 +231,7 @@ uv run -p 3.14 --no-project \
 ```bash
 uv run -p 3.14 --no-project \
   --with requests \
-  /path/to/wechat-article-toolkit/scripts/publisher.py \
+  ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/publisher.py \
   --title "Claude Code 零基础入门指南" \
   --content "output/claude-code-guide.html" \
   --cover "cover.png" \

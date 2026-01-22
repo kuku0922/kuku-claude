@@ -1,11 +1,11 @@
 {
   "name": "wechat-article-toolkit",
-  "description": "多智能体协作的微信公众号文章写作工具集，支持创作与仿写模式，涵盖调研、多角度写作（技术/产品/新闻/教程）、封面生成（即梦 AI）、格式化排版、一键发布等完整工作流。所有脚本通过 uv 临时包运行，无需本地安装依赖。",
+  "description": "多智能体协作的微信公众号文章写作工具集，支持创作与仿写模式，涵盖调研、多角度写作（技术/产品/新闻/教程）、AI 图片生成（Gemini/即梦）、格式化排版、一键发布等完整工作流。所有脚本通过 uv 临时包运行，无需本地安装依赖。",
   "author": {
     "name": "YanG",
     "email": "yang@example.com"
   },
-  "version": "4.3.0",
+  "version": "4.4.0",
   "license": "MIT",
   "keywords": [
     "wechat",
@@ -16,6 +16,7 @@
     "automation",
     "publishing",
     "uv",
+    "gemini",
     "jimeng",
     "volcengine",
     "image-generation"

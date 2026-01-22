@@ -10,9 +10,9 @@
 - 无需创建虚拟环境，无需安装依赖
 
 使用方法:
-    uv run -p 3.14 --no-project --with requests scripts/publisher.py --title "文章标题" --content article.html
-    uv run -p 3.14 --no-project --with requests scripts/publisher.py --title "文章标题" --content article.html --cover cover.png
-    uv run -p 3.14 --no-project --with requests scripts/publisher.py --interactive
+    uv run -p 3.14 --no-project --with requests ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/publisher.py --title "文章标题" --content article.html
+    uv run -p 3.14 --no-project --with requests ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/publisher.py --title "文章标题" --content article.html --cover cover.png
+    uv run -p 3.14 --no-project --with requests ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/scripts/publisher.py --interactive
 
 配置文件: 项目目录/.claude/config/settings.json
 """

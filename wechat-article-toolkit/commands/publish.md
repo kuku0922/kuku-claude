@@ -152,13 +152,13 @@ Task(
 | 错误 | 原因 | 解决方案 |
 |------|------|----------|
 | 文件不存在 | 路径错误 | 检查文件路径 |
-| 配置缺失 | 未配置微信 API | 复制 config/settings.example.json |
+| 配置缺失 | 未配置微信 API | 复制 ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/settings.example.json |
 | Token 失效 | Access Token 过期 | 自动刷新 Token |
 | 上传失败 | 网络问题或图片过大 | 重试或压缩图片 |
 
 ## 配置要求
 
-确保已配置 `config/settings.json`：
+确保已配置 `.claude/config/settings.json`：
 
 ```json
 {
@@ -172,7 +172,7 @@ Task(
 
 首次使用：
 ```bash
-cp config/settings.example.json config/settings.json
+cp ~/.claude/plugins/marketplaces/kuku-claude/wechat-article-toolkit/config/settings.example.json .claude/config/settings.json
 ```
 
 ## 注意事项
